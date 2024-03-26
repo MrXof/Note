@@ -45,12 +45,19 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    let cell = tableView.dequeueReusableCell(withIdentifier: "NoteTableViewCell", for: indexPath) 
+    let cell = tableView.dequeueReusableCell(withIdentifier: "NoteTableViewCell", for: indexPath) as! NoteTableViewCell
     
-    cell.textLabel?.text = ObjectStore.shared.objects[indexPath.row].name
-    cell.backgroundColor = .lightGray
-    cell.layer.cornerRadius = 10
+    let dateFormatter = DateFormatter()
+    dateFormatter.dateFormat = "dd/MM/yyyy HH:mm"
     
+    let deadLineDate = ObjectStore.shared.objects[indexPath.row].deadlineDate
+    let dateString = dateFormatter.string(from: deadLineDate)
+    
+    cell.textLable.text = ObjectStore.shared.objects[indexPath.row].name
+    cell.timeLAbel.text = dateString
+    cell.timeLAbel.textColor = .red
+    cell.contentView.backgroundColor = .lightGray
+    cell.contentView.layer.cornerRadius = 10
     
     return cell
   }
@@ -64,7 +71,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
   
   func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-    return 60
+    return 77
   }
   
   func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {

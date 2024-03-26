@@ -13,7 +13,10 @@ final class ObjectStore{
   private(set) var objects : [Note] = []
   
   static let shared = ObjectStore()
-  private init(){}
+  private init(){
+    objects.append(.init(id: 0, name: "Купити молоко", isDone: false, deadlineDate: .init()))
+    
+  }
   
   func add(note: Note){
     objects.append(note)

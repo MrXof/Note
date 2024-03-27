@@ -108,9 +108,9 @@
                                         <gestureRecognizers/>
                                         <connections>
                                             <outlet property="StatusButton" destination="zQG-Gt-2N0" id="W2h-9h-a05"/>
-                                            <outlet property="labelText" destination="y3c-EL-zhN" id="J4n-oT-CMF"/>
-                                            <outlet property="labelTime" destination="PvB-Lb-7wd" id="jTw-NG-tIa"/>
                                             <outlet property="selector" destination="dol-Bs-y3j" id="Wr7-Xb-pA2"/>
+                                            <outlet property="textLable" destination="y3c-EL-zhN" id="Mmd-zI-s5O"/>
+                                            <outlet property="timeLAbel" destination="PvB-Lb-7wd" id="UXh-xb-lcq"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>

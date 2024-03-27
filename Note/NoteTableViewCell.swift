@@ -13,18 +13,18 @@ class NoteTableViewCell: UITableViewCell{
   var largecircleStatusL: Bool = false
   
   @IBOutlet weak var selector: UIView!
-  @IBOutlet weak var labelTime: UILabel!
+  @IBOutlet weak var timeLAbel: UILabel!
+  @IBOutlet weak var textLable: UILabel!
   @IBOutlet weak var StatusButton: UIButton!
-  @IBOutlet weak var labelText: UILabel!
   
   @IBAction func tabButton(_ sender: Any) {
-    largecircleStatusL = !largecircleStatusL
-    if largecircleStatusL{
-      StatusButton.setImage(UIImage(named: "circle"), for: .normal)
-    }else{
-      StatusButton.setImage(UIImage(systemName: "largecircle.fill.circle")
-                            , for: .normal)
-    }
+        largecircleStatusL = !largecircleStatusL
+        if largecircleStatusL{
+          StatusButton.setImage(UIImage(named: "circle"), for: .normal)
+        }else{
+          StatusButton.setImage(UIImage(systemName: "largecircle.fill.circle")
+                                , for: .normal)
+        }
   }
   
 }

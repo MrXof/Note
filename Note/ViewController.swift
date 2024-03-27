@@ -53,9 +53,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     let deadLineDate = ObjectStore.shared.objects[indexPath.row].deadlineDate
     let dateString = dateFormatter.string(from: deadLineDate)
     
-    cell.labelText.text = ObjectStore.shared.objects[indexPath.row].name
-    cell.labelTime.text = dateString
-    cell.labelTime.textColor = .red
+    cell.textLable.text = ObjectStore.shared.objects[indexPath.row].name
+    cell.timeLAbel.text = dateString
+    cell.timeLAbel.textColor = .red
     cell.contentView.backgroundColor = .lightGray
     cell.contentView.layer.cornerRadius = 10
     

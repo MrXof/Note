@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		E44AE8D32BAD7ED7007DDE93 /* ModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44AE8D22BAD7ED7007DDE93 /* ModalViewController.swift */; };
 		E44AE8D52BADACF8007DDE93 /* ObjectStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44AE8D42BADACF8007DDE93 /* ObjectStore.swift */; };
+		E45336452BB4183200113522 /* gitignore in Resources */ = {isa = PBXBuildFile; fileRef = E45336442BB4183200113522 /* gitignore */; };
 		E4A322192BAC648600A2503F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4A322182BAC648600A2503F /* AppDelegate.swift */; };
 		E4A3221B2BAC648600A2503F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4A3221A2BAC648600A2503F /* SceneDelegate.swift */; };
 		E4A3221D2BAC648700A2503F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4A3221C2BAC648700A2503F /* ViewController.swift */; };
@@ -23,6 +24,7 @@
 /* Begin PBXFileReference section */
 		E44AE8D22BAD7ED7007DDE93 /* ModalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalViewController.swift; sourceTree = "<group>"; };
 		E44AE8D42BADACF8007DDE93 /* ObjectStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectStore.swift; sourceTree = "<group>"; };
+		E45336442BB4183200113522 /* gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = gitignore; sourceTree = "<group>"; };
 		E4A322152BAC648600A2503F /* Note.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Note.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E4A322182BAC648600A2503F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E4A3221A2BAC648600A2503F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -78,6 +80,7 @@
 				E4A322232BAC648800A2503F /* LaunchScreen.storyboard */,
 				E4A322262BAC648800A2503F /* Info.plist */,
 				E4A3222E2BAC698F00A2503F /* Assets.xcassets */,
+				E45336442BB4183200113522 /* gitignore */,
 			);
 			path = Note;
 			sourceTree = "<group>";
@@ -141,6 +144,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E4A322252BAC648800A2503F /* LaunchScreen.storyboard in Resources */,
+				E45336452BB4183200113522 /* gitignore in Resources */,
 				E4A3222F2BAC698F00A2503F /* Assets.xcassets in Resources */,
 				E4A322202BAC648700A2503F /* Main.storyboard in Resources */,
 			);

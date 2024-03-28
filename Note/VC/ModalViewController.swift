@@ -13,6 +13,7 @@ class ModalViewController: UIViewController, UITextViewDelegate{
   @IBOutlet weak var datePicker: UIDatePicker!
   @IBOutlet weak var completionOfAddition: UIButton!
   @IBOutlet weak var textView: UITextView!
+  @IBOutlet weak var statusData: UISwitch!
   
   var defaultValue: Bool = false
   var switchValue: Bool = false
@@ -53,11 +54,15 @@ class ModalViewController: UIViewController, UITextViewDelegate{
       textView.textColor = UIColor.lightGray
     }
   }
-    
+  
   @IBAction func completionButton(_ sender: Any) {
     let count: Int = ObjectStore.shared.objects.count
     if textView.text != "Нотатки" && (textView.text != nil) != textView.text.isEmpty{
-      ObjectStore.shared.add(note: Note(id: count, name: textView.text, isDone: defaultValue, deadlineDate: dataValue))
+      if statusData.isOn{
+        ObjectStore.shared.add(note: Note(id: count, name: textView.text, isDone: defaultValue, deadlineDate: dataValue))
+      }else{
+        ObjectStore.shared.add(note: Note(id: count, name: textView.text, isDone: defaultValue, deadlineDate: nil))
+      }
       dismiss(animated: true)
     }
   }
@@ -75,6 +80,7 @@ class ModalViewController: UIViewController, UITextViewDelegate{
     }else{
       print("false")
     }
+    
   }
   
 }

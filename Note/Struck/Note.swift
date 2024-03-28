@@ -11,6 +11,6 @@ struct Note{
     var id: Int
     var name: String
     var isDone: Bool
-    var deadlineDate: Date
+    var deadlineDate: Date?
 }
 

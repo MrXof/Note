@@ -16,7 +16,6 @@ class ModalViewController: UIViewController, UITextViewDelegate{
   @IBOutlet weak var statusData: UISwitch!
   
   var defaultValue: Bool = false
-  var switchValue: Bool = false
   var dataValue = Date()
   
   static let controllerIdentifier = "ModalViewController"
@@ -72,15 +71,19 @@ class ModalViewController: UIViewController, UITextViewDelegate{
   }
   
   @IBAction func dataChoice(_ sender: Any) {
-    switchValue = !switchValue
-    if switchValue{
-      print("true")
-      dataValue = self.datePicker.date
-      print(dataValue)
-    }else{
-      print("false")
-    }
     
+    if statusData.isOn{
+      self.datePicker.alpha = 1.0
+      self.datePicker.isHidden = false
+
+    }else{
+      self.datePicker.alpha = 0.0
+      self.datePicker.isEnabled = true
+    }
+  }
+  
+  @IBAction func takeDateAndTime(_ sender: Any) {
+    dataValue = self.datePicker.date
   }
   
 }

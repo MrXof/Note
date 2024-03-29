@@ -20,7 +20,6 @@ class NoteInformation: UIViewController{
   @IBOutlet weak var buttonSetting: UIButton!
   @IBOutlet weak var textView: UITextView!
   @IBOutlet weak var statusData: UISwitch!
-  @IBOutlet weak var datePicker: UIDatePicker!
   
   static let controllerIdentifier = "NoteInformation"
   var defaultValue: Bool = false
@@ -48,12 +47,19 @@ class NoteInformation: UIViewController{
     if let deadlineDate = ObjectStore.shared.objects[sender].deadlineDate {
       let timeString = dateFormatter.string(from: deadlineDate)
       timeInformation.text = timeString
+      self.dataPicker.date = deadlineDate
     } else {
       timeInformation.text = ""
       timeView.backgroundColor = .clear
     }
-    
+    let checkValue = ObjectStore.shared.objects[sender].deadlineDate
+    if checkValue != nil{
+      self.statusData.isOn = true
+    }else{
+      self.statusData.isOn = false
+    }
   }
+  
   
   //MARK: -- Methods
   
@@ -63,11 +69,19 @@ class NoteInformation: UIViewController{
     settingsButtonCancel.alpha = 0.0
     optionalViewTime.alpha = 0.0
     buttonSetting.alpha = 1.0
+    dataPicker.alpha = 0.0
     self.textView.isHidden = false
     self.settingsButtonDone.isHidden = false
     self.settingsButtonCancel.isHidden = false
     self.optionalViewTime.isHidden = false
     self.buttonSetting.isHidden = true
+    
+    if statusData.isOn{
+      self.dataPicker.isHidden = false
+      self.dataPicker.alpha = 1.0
+    }else{
+      self.dataPicker.isHidden = true
+    }
     
     UIView.animate(withDuration: 0.3) {
       self.settingsButtonDone.alpha = 1.0
@@ -80,6 +94,7 @@ class NoteInformation: UIViewController{
     self.buffer = self.labelInformation.text!  //TODO: тут завжди будуть дані
     self.textView.text = buffer
     self.labelInformation.text = nil
+    
   }
   
   @IBAction func cancelSettings(_ sender: Any) {
@@ -111,10 +126,16 @@ class NoteInformation: UIViewController{
     switchValue = !switchValue
     if switchValue{
       print("true")
-      dataValue = self.datePicker.date
-      print(dataValue)
+      dataValue = self.dataPicker.date
+    }else{}
+  }
+  
+  @IBAction func showDataPicker(_ sender: Any) {
+    if statusData.isOn {
+      self.dataPicker.alpha = 1.0
+      self.dataPicker.isHidden = false
     }else{
-      print("false")
+      self.dataPicker.isHidden = true
     }
   }
   

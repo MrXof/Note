@@ -20,12 +20,14 @@ class NoteInformation: UIViewController{
   @IBOutlet weak var buttonSetting: UIButton!
   @IBOutlet weak var textView: UITextView!
   @IBOutlet weak var statusData: UISwitch!
+  @IBOutlet weak var datePicker: UIDatePicker!
   
   static let controllerIdentifier = "NoteInformation"
   var defaultValue: Bool = false
   var dataValue = Date()
   var buffer = String()
   var indexRow = Int()
+  var switchValue: Bool = false
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -104,4 +106,16 @@ class NoteInformation: UIViewController{
       }
     }
   }
+  
+  @IBAction func dataChoice(_ sender: Any) {
+    switchValue = !switchValue
+    if switchValue{
+      print("true")
+      dataValue = self.datePicker.date
+      print(dataValue)
+    }else{
+      print("false")
+    }
+  }
+  
 }

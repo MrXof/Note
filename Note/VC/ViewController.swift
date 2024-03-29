@@ -62,9 +62,12 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
       atribitedText.addAttribute(.foregroundColor, value: UIColor.red, range: NSRange(location: dateString.count + 1, length: timeString.count))
       
       cell.lableTime.attributedText = atribitedText
+    }else{
+      cell.lableTime.text = ""
     }
     
     cell.lableText.text = ObjectStore.shared.objects[indexPath.row].name
+    cell.lableText.numberOfLines = 0
     cell.contentView.layer.cornerRadius = 10
   
     return cell

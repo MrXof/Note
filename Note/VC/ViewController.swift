@@ -11,11 +11,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
   
   let cellReuseIdentifier = "cell"
 
-  
   @IBOutlet weak var tableView: UITableView!
-  @IBOutlet weak var plusButton: UIButton!
-  
-  var isFormattingEnabled = false
+  @IBOutlet weak var addNoteButton: UIButton!
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -32,8 +29,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     let storyboard = UIStoryboard(name: "Main", bundle: nil)
     guard let destinationController = storyboard.instantiateViewController(withIdentifier: ModalViewController.controllerIdentifier) as? ModalViewController
     else { return }
+    
     if let presentationController = destinationController.presentationController as? UISheetPresentationController{
-      presentationController.detents = [.large()]
     }
     self.present(destinationController, animated: true)
   }
@@ -47,29 +44,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: "NoteTableViewCell", for: indexPath) as! NoteTableViewCell
     
-    let dateFormatter = DateFormatter()
-    dateFormatter.dateFormat = "dd/MM/yyyy"
+    cell.displayNote(ObjectStore.shared.objects[indexPath.row])
     
-    let timeFormatter = DateFormatter()
-    timeFormatter.dateFormat = "HH:mm"
-
-    if let deadLineDate = ObjectStore.shared.objects[indexPath.row].deadlineDate {
-      let dateString = dateFormatter.string(from: deadLineDate)
-      let timeString = timeFormatter.string(from: deadLineDate)
-      
-      let atribitedText = NSMutableAttributedString(string: "\(dateString) \(timeString)")
-      atribitedText.addAttribute(.foregroundColor, value: UIColor.black, range: NSRange(location: 0, length: dateString.count))
-      atribitedText.addAttribute(.foregroundColor, value: UIColor.red, range: NSRange(location: dateString.count + 1, length: timeString.count))
-      
-      cell.lableTime.attributedText = atribitedText
-    }else{
-      cell.lableTime.text = ""
-    }
-    
-    cell.lableText.text = ObjectStore.shared.objects[indexPath.row].name
-    cell.lableText.numberOfLines = 0
-    cell.contentView.layer.cornerRadius = 10
-  
     return cell
   }
   
@@ -77,23 +53,18 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     if editingStyle == .delete {
       ObjectStore.shared.clearTableViewCell(index: indexPath.row)
       tableView.deleteRows(at: [indexPath], with: .fade)
-    }else if editingStyle == .insert{}
+    }
     
   }
   
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     let storyboard = UIStoryboard(name: "Main", bundle: nil)
-    guard let destinationController = storyboard.instantiateViewController(withIdentifier: NoteInformation.controllerIdentifier) as? NoteInformation
+    guard let destinationController = storyboard.instantiateViewController(withIdentifier: NoteInformationViewController.controllerIdentifier) as? NoteInformationViewController
     else { return }
     if let presentationController = destinationController.presentationController as? UISheetPresentationController{
-      presentationController.detents = [.large()]
     }
     self.present(destinationController, animated: true)
-    destinationController.sender(indexPath.row)
-  }
-  
-  func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-    
+    destinationController.index(indexPath.row)
   }
   
   //MARK: -- Methods Protocols

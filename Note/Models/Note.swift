@@ -8,6 +8,7 @@
 import Foundation
 
 struct Note{
+  
     var id: Int
     var name: String
     var isDone: Bool

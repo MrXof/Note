@@ -8,5 +8,7 @@
 import Foundation
 
 protocol ObjectStoreDelegate{
+  
   func objectStoreDidChangeValue(_ objectStore: ObjectStore)
+  
 }

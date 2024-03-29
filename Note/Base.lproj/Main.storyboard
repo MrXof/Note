@@ -74,7 +74,7 @@
                                                                     <state key="normal" title="Button"/>
                                                                     <buttonConfiguration key="configuration" style="plain" image="circle"/>
                                                                     <connections>
-                                                                        <action selector="tabButton:" destination="3bm-Mx-ZXk" eventType="touchUpInside" id="Zfl-iy-SYk"/>
+                                                                        <action selector="tapButton:" destination="3bm-Mx-ZXk" eventType="touchUpInside" id="KSi-ar-wYk"/>
                                                                     </connections>
                                                                 </button>
                                                             </subviews>
@@ -123,9 +123,9 @@
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <gestureRecognizers/>
                                         <connections>
-                                            <outlet property="StatusButton" destination="5JP-Zi-jON" id="hxN-Nd-CZr"/>
-                                            <outlet property="lableText" destination="xWB-D8-7jd" id="gEc-pe-v3i"/>
-                                            <outlet property="lableTime" destination="DLb-uw-Wa8" id="ASB-Oy-Yth"/>
+                                            <outlet property="labelText" destination="xWB-D8-7jd" id="2yo-Gd-Zgd"/>
+                                            <outlet property="statusButton" destination="5JP-Zi-jON" id="vFa-7K-asd"/>
+                                            <outlet property="timeLabel" destination="DLb-uw-Wa8" id="1Fd-eO-JHP"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -164,7 +164,7 @@
                         </variation>
                     </view>
                     <connections>
-                        <outlet property="plusButton" destination="KUi-Jz-290" id="TAD-Kv-wFs"/>
+                        <outlet property="addNoteButton" destination="KUi-Jz-290" id="I3b-Aw-rvm"/>
                         <outlet property="tableView" destination="pg8-mt-Cb6" id="Why-Sa-U2Z"/>
                         <segue destination="Cjs-sH-1kf" kind="presentation" id="72b-Wg-fj1"/>
                         <segue destination="CDI-P2-fUi" kind="show" id="Ypo-yX-Y4C"/>
@@ -325,10 +325,10 @@
             </objects>
             <point key="canvasLocation" x="1020.6106870229007" y="-27.464788732394368"/>
         </scene>
-        <!--Note Information-->
+        <!--Note Information View Controller-->
         <scene sceneID="2nA-3h-Qmn">
             <objects>
-                <viewController storyboardIdentifier="NoteInformation" useStoryboardIdentifierAsRestorationIdentifier="YES" id="CDI-P2-fUi" customClass="NoteInformation" customModule="Note" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="NoteInformationViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="CDI-P2-fUi" customClass="NoteInformationViewController" customModule="Note" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Wuk-ay-Xhx">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -342,9 +342,6 @@
                                 <buttonConfiguration key="configuration" style="plain" title="Редагувати">
                                     <color key="baseForegroundColor" red="0.20392158630000001" green="0.42745098469999998" blue="0.85098040100000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 </buttonConfiguration>
-                                <connections>
-                                    <action selector="ShowSettings:" destination="CDI-P2-fUi" eventType="touchUpInside" id="9eb-od-jQi"/>
-                                </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="317-tw-a4F">
                                 <rect key="frame" x="16" y="185" width="361" height="400"/>
@@ -445,7 +442,7 @@
                                             <constraint firstAttribute="width" constant="187" id="i6g-sq-zNO"/>
                                         </constraints>
                                         <connections>
-                                            <action selector="dataChoice:" destination="CDI-P2-fUi" eventType="valueChanged" id="ODP-ZQ-OXs"/>
+                                            <action selector="dateHasChange:" destination="CDI-P2-fUi" eventType="valueChanged" id="qxG-ih-C4h"/>
                                         </connections>
                                     </datePicker>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="calendar" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="aps-Ks-jpP">
@@ -506,13 +503,13 @@
                     </view>
                     <navigationItem key="navigationItem" id="VHg-ct-elF"/>
                     <connections>
-                        <outlet property="buttonSetting" destination="v0t-jH-fTu" id="j5H-Lq-BG0"/>
+                        <outlet property="cancelButton" destination="rdo-mv-EZn" id="jdU-s9-KbZ"/>
+                        <outlet property="centerLabelTextOutput" destination="F8p-gJ-ssD" id="Lm7-Zy-uRV"/>
                         <outlet property="dataPicker" destination="ypm-u1-jFt" id="7T9-8D-sOM"/>
-                        <outlet property="labelInformation" destination="F8p-gJ-ssD" id="Doz-na-QrI"/>
+                        <outlet property="doneButton" destination="9tN-4k-Naz" id="ClZ-ag-Qt6"/>
                         <outlet property="optionalViewTime" destination="I07-Xq-umS" id="0ge-I9-eKq"/>
-                        <outlet property="settingsButtonCancel" destination="rdo-mv-EZn" id="Ho5-g8-00D"/>
-                        <outlet property="settingsButtonDone" destination="9tN-4k-Naz" id="zZR-kp-vxq"/>
-                        <outlet property="statusData" destination="AXT-eh-Upb" id="mCk-Rr-Qns"/>
+                        <outlet property="showEditMode" destination="v0t-jH-fTu" id="yCz-bX-KH3"/>
+                        <outlet property="switchDataAndTime" destination="AXT-eh-Upb" id="mUf-fp-Cac"/>
                         <outlet property="textView" destination="0eA-mQ-CNP" id="Jom-rq-3eY"/>
                         <outlet property="timeInformation" destination="GUz-RD-HjA" id="gmg-Gc-vvy"/>
                         <outlet property="timeView" destination="nCo-j6-oe6" id="EHV-31-IT1"/>

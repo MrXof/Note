@@ -11,9 +11,9 @@ import UIKit
 class ModalViewController: UIViewController, UITextViewDelegate{
   
   @IBOutlet weak var datePicker: UIDatePicker!
-  @IBOutlet weak var completionOfAddition: UIButton!
+  @IBOutlet weak var doneButton: UIButton!
   @IBOutlet weak var textView: UITextView!
-  @IBOutlet weak var statusData: UISwitch!
+  @IBOutlet weak var switchDate: UISwitch!
   
   var defaultValue: Bool = false
   var dataValue = Date()
@@ -31,7 +31,7 @@ class ModalViewController: UIViewController, UITextViewDelegate{
   
   func editButton(){
     let boldFont = UIFont.boldSystemFont(ofSize: 17)
-    completionOfAddition.titleLabel?.font = boldFont
+    doneButton.titleLabel?.font = boldFont
   }
   
   func customTextView(){
@@ -57,11 +57,14 @@ class ModalViewController: UIViewController, UITextViewDelegate{
   @IBAction func completionButton(_ sender: Any) {
     let count: Int = ObjectStore.shared.objects.count
     if textView.text != "Нотатки" && (textView.text != nil) != textView.text.isEmpty{
-      if statusData.isOn{
-        ObjectStore.shared.add(note: Note(id: count, name: textView.text, isDone: defaultValue, deadlineDate: dataValue))
+      
+      let newDate: Date?
+      if switchDate.isOn{
+        newDate = dataValue
       }else{
-        ObjectStore.shared.add(note: Note(id: count, name: textView.text, isDone: defaultValue, deadlineDate: nil))
+        newDate = nil
       }
+      ObjectStore.shared.add(note: Note(id: count, name: textView.text, isDone: defaultValue, deadlineDate: newDate))
       dismiss(animated: true)
     }
   }
@@ -72,7 +75,7 @@ class ModalViewController: UIViewController, UITextViewDelegate{
   
   @IBAction func dataChoice(_ sender: Any) {
     
-    if statusData.isOn{
+    if switchDate.isOn{
       self.datePicker.alpha = 1.0
       self.datePicker.isHidden = false
 
@@ -82,7 +85,7 @@ class ModalViewController: UIViewController, UITextViewDelegate{
     }
   }
   
-  @IBAction func takeDateAndTime(_ sender: Any) {
+  @IBAction func applyDateAndTime(_ sender: Any) {
     dataValue = self.datePicker.date
   }
   

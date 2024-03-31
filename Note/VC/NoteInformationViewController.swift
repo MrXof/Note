@@ -8,6 +8,7 @@
 import UIKit
 
 class NoteInformationViewController: UIViewController{
+  
   @IBOutlet weak var centerLabelTextOutput: UILabel!
   @IBOutlet weak var timeInformation: UILabel!
   @IBOutlet weak var timeView: UIView!
@@ -21,7 +22,7 @@ class NoteInformationViewController: UIViewController{
   
   static let controllerIdentifier = "NoteInformationViewController"
   var defaultValueIsDone: Bool = false
-  var dataValue = Date() //TODO: так потрібно
+  var isDone = Date()
   var bufferString = String()
   var indexRow = 0
   var isDateEnabled: Bool = false
@@ -108,13 +109,14 @@ class NoteInformationViewController: UIViewController{
   }
   
   @IBAction func doneSettings(_ senders: Any) {
-    let count: Int = ObjectStore.shared.objects.count //TODO: ne pon (якщо в нас текст нотатки, або пустий текст -> нам нема сенсу далі виконувати якийсь код. ідеальне місце для guard)
+    let count: Int = ObjectStore.shared.objects.count
+    print(count)
     if textView.text != "Нотатки" && (textView.text != nil) != textView.text.isEmpty{
       if switchDataAndTime.isOn{
-        date.edit(index: indexRow, note: Note(id: count, name: textView.text, isDone: defaultValueIsDone, deadlineDate: dataValue))
+        date.edit( note: Note(id: count, name: textView.text, isDone: defaultValueIsDone, deadlineDate: isDone))
         dismiss(animated: true)
       }else{
-        date.edit(index: indexRow, note: Note(id: count, name: textView.text, isDone: defaultValueIsDone, deadlineDate: nil))
+        date.edit( note: Note(id: count, name: textView.text, isDone: defaultValueIsDone, deadlineDate: nil))
 
         dismiss(animated: true)
       }
@@ -124,13 +126,14 @@ class NoteInformationViewController: UIViewController{
   @IBAction func dateHasChange(_ sender: Any) {
     isDateEnabled = !isDateEnabled
     if isDateEnabled{
-      dataValue = self.dataPicker.date
+      isDone = self.dataPicker.date
     }else{}
   }
   
   @IBAction func showDataPicker(_ sender: Any) {
     if switchDataAndTime.isOn {
       self.dataPicker.isHidden = false
+      dataPicker.alpha = 1.0
     }else{
       self.dataPicker.isHidden = true
     }

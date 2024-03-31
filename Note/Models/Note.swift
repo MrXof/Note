@@ -13,5 +13,6 @@ struct Note{
     var name: String
     var isDone: Bool
     var deadlineDate: Date?
+  
 }
 

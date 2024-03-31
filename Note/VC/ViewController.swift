@@ -44,7 +44,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: "NoteTableViewCell", for: indexPath) as! NoteTableViewCell
     
-    cell.displayNote(ObjectStore.shared.objects[indexPath.row])
+    cell.display(ObjectStore.shared.objects[indexPath.row])
     
     return cell
   }

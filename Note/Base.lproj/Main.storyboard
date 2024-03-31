@@ -263,7 +263,7 @@
                                             <constraint firstAttribute="width" constant="197" id="XKf-zn-0oB"/>
                                         </constraints>
                                         <connections>
-                                            <action selector="takeDateAndTime:" destination="Cjs-sH-1kf" eventType="valueChanged" id="ef6-Rc-tFF"/>
+                                            <action selector="applyDateAndTime:" destination="Cjs-sH-1kf" eventType="valueChanged" id="LHC-Ev-Mlu"/>
                                         </connections>
                                     </datePicker>
                                     <switch opaque="NO" multipleTouchEnabled="YES" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LFY-7T-U0S">
@@ -315,9 +315,9 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="completionOfAddition" destination="3mi-J9-DRi" id="WwJ-Wg-Vbz"/>
                         <outlet property="datePicker" destination="frc-fP-YoC" id="dtT-Of-OIX"/>
-                        <outlet property="statusData" destination="LFY-7T-U0S" id="FXV-kN-HfZ"/>
+                        <outlet property="doneButton" destination="3mi-J9-DRi" id="bRf-Yi-soV"/>
+                        <outlet property="switchDate" destination="LFY-7T-U0S" id="e6l-T6-Rgd"/>
                         <outlet property="textView" destination="meW-Ch-gBY" id="ige-9O-kr3"/>
                     </connections>
                 </viewController>
@@ -342,6 +342,9 @@
                                 <buttonConfiguration key="configuration" style="plain" title="Редагувати">
                                     <color key="baseForegroundColor" red="0.20392158630000001" green="0.42745098469999998" blue="0.85098040100000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 </buttonConfiguration>
+                                <connections>
+                                    <action selector="showEditMode:" destination="CDI-P2-fUi" eventType="touchUpInside" id="1bT-B6-Nw9"/>
+                                </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="317-tw-a4F">
                                 <rect key="frame" x="16" y="185" width="361" height="400"/>
@@ -529,7 +532,7 @@
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="systemBlueColor">
-            <color red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

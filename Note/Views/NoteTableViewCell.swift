@@ -8,6 +8,7 @@
 import UIKit
 
 class NoteTableViewCell: UITableViewCell{
+  
   var buttonStatus: Bool = true
   var uiImage = "largecircle.fill.circle"
   
@@ -20,13 +21,12 @@ class NoteTableViewCell: UITableViewCell{
     if buttonStatus{
       statusButton.setImage(UIImage(named: "circle"), for: .normal)
     }else{
-      statusButton.setImage(UIImage(systemName: uiImage)
-                            , for: .normal)
+      statusButton.setImage(UIImage(systemName: uiImage), for: .normal)
     }
     
   }
   
-  func displayNote(_ note: Note){
+  func display(_ note: Note){
     
     let dateFormatter = DateFormatter()
     dateFormatter.dateFormat = "dd/MM/yyyy"
@@ -50,7 +50,6 @@ class NoteTableViewCell: UITableViewCell{
     labelText.text = note.name
     labelText.numberOfLines = 0
     contentView.layer.cornerRadius = 10
-    
   }
   
 }

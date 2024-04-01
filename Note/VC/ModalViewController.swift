@@ -11,11 +11,11 @@ import UIKit
 class ModalViewController: UIViewController, UITextViewDelegate{
   
   @IBOutlet weak var datePicker: UIDatePicker!
-  @IBOutlet weak var completionOfAddition: UIButton!
+  @IBOutlet weak var doneButton: UIButton!
   @IBOutlet weak var textView: UITextView!
+  @IBOutlet weak var switchDate: UISwitch!
   
   var defaultValue: Bool = false
-  var switchValue: Bool = false
   var dataValue = Date()
   
   static let controllerIdentifier = "ModalViewController"
@@ -31,7 +31,7 @@ class ModalViewController: UIViewController, UITextViewDelegate{
   
   func editButton(){
     let boldFont = UIFont.boldSystemFont(ofSize: 17)
-    completionOfAddition.titleLabel?.font = boldFont
+    doneButton.titleLabel?.font = boldFont
   }
   
   func customTextView(){
@@ -53,11 +53,18 @@ class ModalViewController: UIViewController, UITextViewDelegate{
       textView.textColor = UIColor.lightGray
     }
   }
-    
+  
   @IBAction func completionButton(_ sender: Any) {
     let count: Int = ObjectStore.shared.objects.count
     if textView.text != "Нотатки" && (textView.text != nil) != textView.text.isEmpty{
-      ObjectStore.shared.add(note: Note(id: count, name: textView.text, isDone: defaultValue, deadlineDate: dataValue))
+      
+      let newDate: Date?
+      if switchDate.isOn{
+        newDate = dataValue
+      }else{
+        newDate = nil
+      }
+      ObjectStore.shared.add(note: Note(id: count, name: textView.text, isDone: defaultValue, deadlineDate: newDate))
       dismiss(animated: true)
     }
   }
@@ -67,14 +74,19 @@ class ModalViewController: UIViewController, UITextViewDelegate{
   }
   
   @IBAction func dataChoice(_ sender: Any) {
-    switchValue = !switchValue
-    if switchValue{
-      print("true")
-      dataValue = self.datePicker.date
-      print(dataValue)
+    
+    if switchDate.isOn{
+      self.datePicker.alpha = 1.0
+      self.datePicker.isHidden = false
+
     }else{
-      print("false")
+      self.datePicker.alpha = 0.0
+      self.datePicker.isEnabled = true
     }
+  }
+  
+  @IBAction func applyDateAndTime(_ sender: Any) {
+    dataValue = self.datePicker.date
   }
   
 }

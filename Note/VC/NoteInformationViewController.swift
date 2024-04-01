@@ -7,7 +7,7 @@
 
 import UIKit
 
-class NoteInformationViewController: UIViewController{
+class NoteInformationViewController: UIViewController {
   
   @IBOutlet weak var centerLabelTextOutput: UILabel!
   @IBOutlet weak var timeInformation: UILabel!
@@ -60,7 +60,6 @@ class NoteInformationViewController: UIViewController{
       self.switchDataAndTime.isOn = false
     }
   }
-  
   
   //MARK: -- Methods
   

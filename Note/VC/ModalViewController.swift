@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-class ModalViewController: UIViewController, UITextViewDelegate{
+class ModalViewController: UIViewController, UITextViewDelegate {
   
   @IBOutlet weak var datePicker: UIDatePicker!
   @IBOutlet weak var doneButton: UIButton!
@@ -29,12 +29,12 @@ class ModalViewController: UIViewController, UITextViewDelegate{
   
   //MARK: -- Methods
   
-  func editButton(){
+  func editButton() {
     let boldFont = UIFont.boldSystemFont(ofSize: 17)
     doneButton.titleLabel?.font = boldFont
   }
   
-  func customTextView(){
+  func customTextView() {
     textView.delegate = self
     textView.text = "Нотатки"
     textView.textColor = UIColor.lightGray
@@ -56,12 +56,12 @@ class ModalViewController: UIViewController, UITextViewDelegate{
   
   @IBAction func completionButton(_ sender: Any) {
     let count: Int = ObjectStore.shared.objects.count
-    if textView.text != "Нотатки" && (textView.text != nil) != textView.text.isEmpty{
+    if textView.text != "Нотатки" && (textView.text != nil) != textView.text.isEmpty {
       
       let newDate: Date?
-      if switchDate.isOn{
+      if switchDate.isOn {
         newDate = dataValue
-      }else{
+      } else {
         newDate = nil
       }
       ObjectStore.shared.add(note: Note(id: count, name: textView.text, isDone: defaultValue, deadlineDate: newDate))
@@ -75,11 +75,11 @@ class ModalViewController: UIViewController, UITextViewDelegate{
   
   @IBAction func dataChoice(_ sender: Any) {
     
-    if switchDate.isOn{
+    if switchDate.isOn {
       self.datePicker.alpha = 1.0
       self.datePicker.isHidden = false
 
-    }else{
+    } else {
       self.datePicker.alpha = 0.0
       self.datePicker.isEnabled = true
     }

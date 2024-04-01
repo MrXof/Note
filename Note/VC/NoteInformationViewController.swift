@@ -38,7 +38,7 @@ class NoteInformationViewController: UIViewController {
     dataPicker.overrideUserInterfaceStyle = .dark
   }
   
-  func index(_ index: Int){
+  func index(_ index: Int) {
     var note = ObjectStore.shared.objects
     centerLabelTextOutput.text = note[index].name
     indexRow = index
@@ -54,9 +54,9 @@ class NoteInformationViewController: UIViewController {
       timeView.backgroundColor = .clear
     }
     let checkValue = note[index].deadlineDate
-    if checkValue != nil{
+    if checkValue != nil {
       self.switchDataAndTime.isOn = true
-    }else{
+    } else {
       self.switchDataAndTime.isOn = false
     }
   }
@@ -76,10 +76,10 @@ class NoteInformationViewController: UIViewController {
     self.optionalViewTime.isHidden = false
     self.showEditMode.isHidden = true
     
-    if switchDataAndTime.isOn{
+    if switchDataAndTime.isOn {
       self.dataPicker.isHidden = false
       self.dataPicker.alpha = 1.0
-    }else{
+    } else {
       self.dataPicker.isHidden = true
     }
     
@@ -109,11 +109,11 @@ class NoteInformationViewController: UIViewController {
   @IBAction func doneSettings(_ senders: Any) {
     let count: Int = ObjectStore.shared.objects.count
     print(count)
-    if textView.text != "Нотатки" && (textView.text != nil) != textView.text.isEmpty{
-      if switchDataAndTime.isOn{
+    if textView.text != "Нотатки" && (textView.text != nil) != textView.text.isEmpty {
+      if switchDataAndTime.isOn {
         date.edit( note: Note(id: count, name: textView.text, isDone: defaultValueIsDone, deadlineDate: isDone))
         dismiss(animated: true)
-      }else{
+      } else {
         date.edit( note: Note(id: count, name: textView.text, isDone: defaultValueIsDone, deadlineDate: nil))
 
         dismiss(animated: true)
@@ -125,14 +125,14 @@ class NoteInformationViewController: UIViewController {
     isDateEnabled = !isDateEnabled
     if isDateEnabled{
       isDone = self.dataPicker.date
-    }else{}
+    } else { }
   }
   
   @IBAction func showDataPicker(_ sender: Any) {
     if switchDataAndTime.isOn {
       self.dataPicker.isHidden = false
       dataPicker.alpha = 1.0
-    }else{
+    } else {
       self.dataPicker.isHidden = true
     }
   }

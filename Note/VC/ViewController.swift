@@ -30,7 +30,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     guard let destinationController = storyboard.instantiateViewController(withIdentifier: ModalViewController.controllerIdentifier) as? ModalViewController
     else { return }
     
-    if let presentationController = destinationController.presentationController as? UISheetPresentationController{
+    if let presentationController = destinationController.presentationController as? UISheetPresentationController {
     }
     self.present(destinationController, animated: true)
   }
@@ -45,7 +45,12 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     let cell = tableView.dequeueReusableCell(withIdentifier: "NoteTableViewCell", for: indexPath) as! NoteTableViewCell
     
     cell.display(ObjectStore.shared.objects[indexPath.row])
-    
+    cell.didRequestChangeStatus = { _ in
+      var note = ObjectStore.shared.objects[indexPath.row]
+      note.isDone = !note.isDone
+      ObjectStore.shared.edit(note: note)
+      print(note)
+    }
     return cell
   }
   
@@ -61,7 +66,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     let storyboard = UIStoryboard(name: "Main", bundle: nil)
     guard let destinationController = storyboard.instantiateViewController(withIdentifier: NoteInformationViewController.controllerIdentifier) as? NoteInformationViewController
     else { return }
-    if let presentationController = destinationController.presentationController as? UISheetPresentationController{
+    if let presentationController = destinationController.presentationController as? UISheetPresentationController {
     }
     self.present(destinationController, animated: true)
     destinationController.index(indexPath.row)

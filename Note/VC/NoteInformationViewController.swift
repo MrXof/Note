@@ -90,7 +90,6 @@ class NoteInformationViewController: UIViewController{
       self.optionalViewTime.alpha = 1.0
       self.showEditMode.alpha = 0.0
     }
-    // setting
     
     self.bufferString = self.centerLabelTextOutput.text!  //TODO: тут завжди будуть дані
     self.textView.text = bufferString

@@ -15,7 +15,6 @@ class ModalViewController: UIViewController, UITextViewDelegate {
   @IBOutlet weak var textView: UITextView!
   @IBOutlet weak var switchDate: UISwitch!
   
-  var defaultValue: Bool = false
   var dataValue = Date()
   
   static let controllerIdentifier = "ModalViewController"
@@ -23,7 +22,7 @@ class ModalViewController: UIViewController, UITextViewDelegate {
     super.viewDidLoad()
     
     editButton()
-    customTextView()
+    setupTextView()
     datePicker.overrideUserInterfaceStyle = .dark
   }
   
@@ -34,7 +33,7 @@ class ModalViewController: UIViewController, UITextViewDelegate {
     doneButton.titleLabel?.font = boldFont
   }
   
-  func customTextView() {
+  func setupTextView() {
     textView.delegate = self
     textView.text = "Нотатки"
     textView.textColor = UIColor.lightGray
@@ -58,13 +57,9 @@ class ModalViewController: UIViewController, UITextViewDelegate {
     let count: Int = ObjectStore.shared.objects.count
     if textView.text != "Нотатки" && (textView.text != nil) != textView.text.isEmpty {
       
-      let newDate: Date?
-      if switchDate.isOn {
-        newDate = dataValue
-      } else {
-        newDate = nil
-      }
-      ObjectStore.shared.add(note: Note(id: count, name: textView.text, isDone: defaultValue, deadlineDate: newDate))
+      let newDate = switchDate.isOn ? dataValue : nil
+      
+      ObjectStore.shared.add(note: Note(id: count, name: textView.text, isDone: false, deadlineDate: newDate))
       dismiss(animated: true)
     }
   }

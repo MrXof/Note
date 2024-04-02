@@ -29,9 +29,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     let storyboard = UIStoryboard(name: "Main", bundle: nil)
     guard let destinationController = storyboard.instantiateViewController(withIdentifier: ModalViewController.controllerIdentifier) as? ModalViewController
     else { return }
-    
-    if let presentationController = destinationController.presentationController as? UISheetPresentationController{
-    }
+
     self.present(destinationController, animated: true)
   }
   
@@ -45,13 +43,18 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     let cell = tableView.dequeueReusableCell(withIdentifier: "NoteTableViewCell", for: indexPath) as! NoteTableViewCell
     
     cell.display(ObjectStore.shared.objects[indexPath.row])
-    
+    cell.didRequestChangeStatus = { _ in
+      var note = ObjectStore.shared.objects[indexPath.row]
+      note.isDone = !note.isDone
+      ObjectStore.shared.edit(note: note)
+      print(note)
+    }
     return cell
   }
   
   func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
     if editingStyle == .delete {
-      ObjectStore.shared.clearTableViewCell(index: indexPath.row)
+      ObjectStore.shared.removeNote(at: indexPath.row)
       tableView.deleteRows(at: [indexPath], with: .fade)
     }
     
@@ -61,16 +64,16 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     let storyboard = UIStoryboard(name: "Main", bundle: nil)
     guard let destinationController = storyboard.instantiateViewController(withIdentifier: NoteInformationViewController.controllerIdentifier) as? NoteInformationViewController
     else { return }
-    if let presentationController = destinationController.presentationController as? UISheetPresentationController{
-    }
+    
     self.present(destinationController, animated: true)
-    destinationController.index(indexPath.row)
+    destinationController.showCellForIndex(indexPath.row)
   }
   
   //MARK: -- Methods Protocols
   
   func objectStoreDidChangeValue(_ objectStore: ObjectStore) {
     tableView.reloadData()
+    print(objectStore.objects)
   }
   
 }

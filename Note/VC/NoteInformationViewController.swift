@@ -38,14 +38,15 @@ class NoteInformationViewController: UIViewController {
     dataPicker.overrideUserInterfaceStyle = .dark
   }
   
-  func index(_ index: Int){
-    var note = ObjectStore.shared.objects
-    centerLabelTextOutput.text = note[index].name
+  func showCellForIndex(_ index: Int) {
+    
     indexRow = index
+    let note = ObjectStore.shared.objects[indexRow]
+    centerLabelTextOutput.text = note.name
     let dateFormatter = DateFormatter()
     dateFormatter.dateFormat = "dd/MM/yyyy HH:mm"
     
-    if let deadlineDate = note[index].deadlineDate {
+    if let deadlineDate = note.deadlineDate {
       let timeString = dateFormatter.string(from: deadlineDate)
       timeInformation.text = timeString
       self.dataPicker.date = deadlineDate
@@ -53,12 +54,8 @@ class NoteInformationViewController: UIViewController {
       timeInformation.text = ""
       timeView.backgroundColor = .clear
     }
-    let checkValue = note[index].deadlineDate
-    if checkValue != nil{
-      self.switchDataAndTime.isOn = true
-    }else{
-      self.switchDataAndTime.isOn = false
-    }
+    let checkValue = note.deadlineDate
+    self.switchDataAndTime.isOn = checkValue != nil
   }
   
   //MARK: -- Methods
@@ -76,10 +73,10 @@ class NoteInformationViewController: UIViewController {
     self.optionalViewTime.isHidden = false
     self.showEditMode.isHidden = true
     
-    if switchDataAndTime.isOn{
+    if switchDataAndTime.isOn {
       self.dataPicker.isHidden = false
       self.dataPicker.alpha = 1.0
-    }else{
+    } else {
       self.dataPicker.isHidden = true
     }
     
@@ -107,34 +104,31 @@ class NoteInformationViewController: UIViewController {
   }
   
   @IBAction func doneSettings(_ senders: Any) {
-    let count: Int = ObjectStore.shared.objects.count
-    print(count)
-    if textView.text != "Нотатки" && (textView.text != nil) != textView.text.isEmpty{
-      if switchDataAndTime.isOn{
-        date.edit( note: Note(id: count, name: textView.text, isDone: defaultValueIsDone, deadlineDate: isDone))
-        dismiss(animated: true)
-      }else{
-        date.edit( note: Note(id: count, name: textView.text, isDone: defaultValueIsDone, deadlineDate: nil))
-
-        dismiss(animated: true)
-      }
-    }
+    guard textView.text != "Нотатки" && !textView.text.isEmpty else { return }
+    
+    let deadlineDate: Date? = switchDataAndTime.isOn ? isDone : nil
+    var note = ObjectStore.shared.objects[indexRow]
+    note.deadlineDate = deadlineDate
+    note.name = textView.text
+    date.edit(note: note)
+    dismiss(animated: true)
   }
   
   @IBAction func dateHasChange(_ sender: Any) {
     isDateEnabled = !isDateEnabled
     if isDateEnabled{
       isDone = self.dataPicker.date
-    }else{}
+    } else { }
   }
   
   @IBAction func showDataPicker(_ sender: Any) {
     if switchDataAndTime.isOn {
       self.dataPicker.isHidden = false
       dataPicker.alpha = 1.0
-    }else{
+    } else {
       self.dataPicker.isHidden = true
     }
   }
+  
   
 }

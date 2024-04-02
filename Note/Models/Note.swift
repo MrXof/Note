@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Note{
+struct Note {
   
     var id: Int
     var name: String

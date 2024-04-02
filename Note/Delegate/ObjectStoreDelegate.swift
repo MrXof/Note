@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol ObjectStoreDelegate{
+protocol ObjectStoreDelegate {
   
   func objectStoreDidChangeValue(_ objectStore: ObjectStore)
   

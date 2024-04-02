@@ -8,33 +8,32 @@
 import Foundation
 import UIKit
 
-class ModalViewController: UIViewController, UITextViewDelegate{
+class ModalViewController: UIViewController, UITextViewDelegate {
   
   @IBOutlet weak var datePicker: UIDatePicker!
   @IBOutlet weak var doneButton: UIButton!
   @IBOutlet weak var textView: UITextView!
   @IBOutlet weak var switchDate: UISwitch!
   
-  var defaultValue: Bool = false
-  var dataValue = Date()
+  var dateValue = Date()
   
   static let controllerIdentifier = "ModalViewController"
   override func viewDidLoad() {
     super.viewDidLoad()
     
     editButton()
-    customTextView()
+    setupTextView()
     datePicker.overrideUserInterfaceStyle = .dark
   }
   
   //MARK: -- Methods
   
-  func editButton(){
+  func editButton() {
     let boldFont = UIFont.boldSystemFont(ofSize: 17)
     doneButton.titleLabel?.font = boldFont
   }
   
-  func customTextView(){
+  func setupTextView() {
     textView.delegate = self
     textView.text = "Нотатки"
     textView.textColor = UIColor.lightGray
@@ -56,17 +55,11 @@ class ModalViewController: UIViewController, UITextViewDelegate{
   
   @IBAction func completionButton(_ sender: Any) {
     let count: Int = ObjectStore.shared.objects.count
-    if textView.text != "Нотатки" && (textView.text != nil) != textView.text.isEmpty{
-      
-      let newDate: Date?
-      if switchDate.isOn{
-        newDate = dataValue
-      }else{
-        newDate = nil
-      }
-      ObjectStore.shared.add(note: Note(id: count, name: textView.text, isDone: defaultValue, deadlineDate: newDate))
+    guard textView.text != "Нотатки" && !textView.text.isEmpty else { return }
+    
+      let newDate = switchDate.isOn ? dateValue : nil
+      ObjectStore.shared.add(note: Note(id: count, name: textView.text, isDone: false, deadlineDate: newDate))
       dismiss(animated: true)
-    }
   }
   
   @IBAction func cancelButton(_ sender: Any) {
@@ -75,18 +68,18 @@ class ModalViewController: UIViewController, UITextViewDelegate{
   
   @IBAction func dataChoice(_ sender: Any) {
     
-    if switchDate.isOn{
+    if switchDate.isOn {
       self.datePicker.alpha = 1.0
       self.datePicker.isHidden = false
 
-    }else{
+    } else {
       self.datePicker.alpha = 0.0
       self.datePicker.isEnabled = true
     }
   }
   
   @IBAction func applyDateAndTime(_ sender: Any) {
-    dataValue = self.datePicker.date
+    dateValue = self.datePicker.date
   }
   
 }

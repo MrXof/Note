@@ -7,9 +7,9 @@
 
 import UIKit
 
-class NoteTableViewCell: UITableViewCell{
+class NoteTableViewCell: UITableViewCell {
   
-  var buttonStatus: Bool = true
+  var didRequestChangeStatus: ((NoteTableViewCell) -> Void)? //callBackFunck
   var uiImage = "largecircle.fill.circle"
   
   @IBOutlet weak var timeLabel: UILabel!
@@ -17,16 +17,11 @@ class NoteTableViewCell: UITableViewCell{
   @IBOutlet weak var labelText: UILabel!
   
   @IBAction func tapButton(_ sender: Any) {
-    buttonStatus = !buttonStatus
-    if buttonStatus{
-      statusButton.setImage(UIImage(named: "circle"), for: .normal)
-    }else{
-      statusButton.setImage(UIImage(systemName: uiImage), for: .normal)
-    }
-    
+    didRequestChangeStatus?(self)
+  
   }
   
-  func display(_ note: Note){
+  func display(_ note: Note) {
     
     let dateFormatter = DateFormatter()
     dateFormatter.dateFormat = "dd/MM/yyyy"
@@ -43,13 +38,18 @@ class NoteTableViewCell: UITableViewCell{
       atribitedText.addAttribute(.foregroundColor, value: UIColor.red, range: NSRange(location: dateString.count + 1, length: timeString.count))
       
       timeLabel.attributedText = atribitedText
-    }else{
+    } else {
       timeLabel.text = ""
     }
-    
     labelText.text = note.name
     labelText.numberOfLines = 0
     contentView.layer.cornerRadius = 10
+    
+    if note.isDone {
+      statusButton.setImage(UIImage(systemName: uiImage), for: .normal)
+    } else {
+      statusButton.setImage(UIImage(named: "circle"), for: .normal)
+    }
   }
   
 }

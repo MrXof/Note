@@ -25,7 +25,7 @@ final class ObjectStore {
     print(objects)
   }
   
-  func clearTableViewCell(index: Int) {
+  func removeNote(index: Int) {
     objects.remove(at: index)
   }
   
@@ -34,8 +34,6 @@ final class ObjectStore {
     if let index = objects.firstIndex(where: { $0.id == note.id }) {
       objects[index] = note
       print(index)
-    } else {
-      print("Fail")
     }
     delegate?.objectStoreDidChangeValue(self)
   }

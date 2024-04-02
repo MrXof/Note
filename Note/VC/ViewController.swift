@@ -54,7 +54,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
   
   func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
     if editingStyle == .delete {
-      ObjectStore.shared.clearTableViewCell(index: indexPath.row)
+      ObjectStore.shared.removeNote(index: indexPath.row)
       tableView.deleteRows(at: [indexPath], with: .fade)
     }
     

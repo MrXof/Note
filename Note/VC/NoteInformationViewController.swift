@@ -39,13 +39,13 @@ class NoteInformationViewController: UIViewController {
   }
   
   func index(_ index: Int) {
-    let note = ObjectStore.shared.objects
-    centerLabelTextOutput.text = note[index].name
+    let notes = ObjectStore.shared.objects
+    centerLabelTextOutput.text = notes[index].name
     indexRow = index
     let dateFormatter = DateFormatter()
     dateFormatter.dateFormat = "dd/MM/yyyy HH:mm"
     
-    if let deadlineDate = note[index].deadlineDate {
+    if let deadlineDate = notes[index].deadlineDate {
       let timeString = dateFormatter.string(from: deadlineDate)
       timeInformation.text = timeString
       self.dataPicker.date = deadlineDate
@@ -53,7 +53,7 @@ class NoteInformationViewController: UIViewController {
       timeInformation.text = ""
       timeView.backgroundColor = .clear
     }
-    let checkValue = note[index].deadlineDate
+    let checkValue = notes[index].deadlineDate
     self.switchDataAndTime.isOn = checkValue != nil
   }
   

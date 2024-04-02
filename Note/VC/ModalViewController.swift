@@ -15,7 +15,7 @@ class ModalViewController: UIViewController, UITextViewDelegate {
   @IBOutlet weak var textView: UITextView!
   @IBOutlet weak var switchDate: UISwitch!
   
-  var dataValue = Date()
+  var dateValue = Date()
   
   static let controllerIdentifier = "ModalViewController"
   override func viewDidLoad() {
@@ -55,13 +55,11 @@ class ModalViewController: UIViewController, UITextViewDelegate {
   
   @IBAction func completionButton(_ sender: Any) {
     let count: Int = ObjectStore.shared.objects.count
-    if textView.text != "Нотатки" && (textView.text != nil) != textView.text.isEmpty {
-      
-      let newDate = switchDate.isOn ? dataValue : nil
-      
+    guard textView.text != "Нотатки" && !textView.text.isEmpty else { return }
+    
+      let newDate = switchDate.isOn ? dateValue : nil
       ObjectStore.shared.add(note: Note(id: count, name: textView.text, isDone: false, deadlineDate: newDate))
       dismiss(animated: true)
-    }
   }
   
   @IBAction func cancelButton(_ sender: Any) {
@@ -81,7 +79,7 @@ class ModalViewController: UIViewController, UITextViewDelegate {
   }
   
   @IBAction func applyDateAndTime(_ sender: Any) {
-    dataValue = self.datePicker.date
+    dateValue = self.datePicker.date
   }
   
 }

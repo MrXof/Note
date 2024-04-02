@@ -26,7 +26,6 @@ class NoteInformationViewController: UIViewController {
   var bufferString = String()
   var indexRow = 0
   var isDateEnabled: Bool = false
-  var date = ObjectStore.shared
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -108,9 +107,11 @@ class NoteInformationViewController: UIViewController {
     
     let deadlineDate: Date? = switchDataAndTime.isOn ? isDone : nil
     var note = ObjectStore.shared.objects[indexRow]
-    note.deadlineDate = deadlineDate
-    note.name = textView.text
-    date.edit(note: note)
+    
+    ObjectStore.shared.edit {
+      note.deadlineDate = deadlineDate
+      note.name = textView.text
+    }
     dismiss(animated: true)
   }
   

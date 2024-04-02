@@ -6,35 +6,50 @@
 //
 
 import Foundation
+import RealmSwift
 
 final class ObjectStore {
   
+  var objects: [Note]{
+    get {
+      realm.objects(Note.self).map({$0})
+    }
+  }
+  let realm = try! Realm()
   var delegate: ObjectStoreDelegate?
-  private(set) var objects : [Note] = []
   
   static let shared = ObjectStore()
-  private init() {
-    objects.append(.init(id: 0, name: "Купити молоко", isDone: false, deadlineDate: .init()))
-    objects.append(.init(id: 1, name: "Помити кота", isDone: false, deadlineDate: .init()))
-    objects.append(.init(id: 2, name: "Список продуктів:\n- Молоко 1л.\n- Хліб\n- Ковбаса\n- Сир\n- Яйця 10 шт.\n- Кола 2л.\n- Серветки", isDone: false, deadlineDate: .init()))
-  }
+  private init() {}
   
   func add(note: Note) {
-    objects.append(note)
+    try! realm.write {
+      realm.add(note)
+    }
     delegate?.objectStoreDidChangeValue(self)
-    print(objects)
   }
   
   func removeNote(at index: Int) {
-    objects.remove(at: index)
+    let arrayNote = realm.objects(Note.self)
+    let deleteNote = arrayNote[index]
+    try! realm.write {
+      realm.delete(deleteNote)
+    }
   }
   
-  func edit(note: Note) {
-    guard let index = objects.firstIndex(where: { $0.id == note.id }) else { return }
-    
-    print(index)
-    objects[index] = note
-    delegate?.objectStoreDidChangeValue(self)
+  //  func edit(note: Note) {
+  //    let arrayNote = realm.objects(Note.self)
+  //    let noteUpdate = arrayNote
+  //    try! realm.write {
+  //      noteUpdate.deadlineDate = note.deadlineDate
+  //      noteUpdate.name = note.name
+  //    }
+  //    delegate?.objectStoreDidChangeValue(self)
+  //  }
+  
+  func edit(block: ()->()) {
+    try! realm.write{
+      block()
+    }
   }
   
 }

@@ -25,16 +25,15 @@ final class ObjectStore {
     print(objects)
   }
   
-  func removeNote(index: Int) {
+  func removeNote(at index: Int) {
     objects.remove(at: index)
   }
   
   func edit(note: Note) {
+    guard let index = objects.firstIndex(where: { $0.id == note.id }) else { return }
     
-    if let index = objects.firstIndex(where: { $0.id == note.id }) {
-      objects[index] = note
-      print(index)
-    }
+    print(index)
+    objects[index] = note
     delegate?.objectStoreDidChangeValue(self)
   }
   

@@ -38,14 +38,15 @@ class NoteInformationViewController: UIViewController {
     dataPicker.overrideUserInterfaceStyle = .dark
   }
   
-  func index(_ index: Int) {
-    let notes = ObjectStore.shared.objects
-    centerLabelTextOutput.text = notes[index].name
+  func showCellForIndex(_ index: Int) {
+    
     indexRow = index
+    let note = ObjectStore.shared.objects[indexRow]
+    centerLabelTextOutput.text = note.name
     let dateFormatter = DateFormatter()
     dateFormatter.dateFormat = "dd/MM/yyyy HH:mm"
     
-    if let deadlineDate = notes[index].deadlineDate {
+    if let deadlineDate = note.deadlineDate {
       let timeString = dateFormatter.string(from: deadlineDate)
       timeInformation.text = timeString
       self.dataPicker.date = deadlineDate
@@ -53,7 +54,7 @@ class NoteInformationViewController: UIViewController {
       timeInformation.text = ""
       timeView.backgroundColor = .clear
     }
-    let checkValue = notes[index].deadlineDate
+    let checkValue = note.deadlineDate
     self.switchDataAndTime.isOn = checkValue != nil
   }
   
@@ -108,6 +109,7 @@ class NoteInformationViewController: UIViewController {
     let deadlineDate: Date? = switchDataAndTime.isOn ? isDone : nil
     var note = ObjectStore.shared.objects[indexRow]
     note.deadlineDate = deadlineDate
+    note.name = textView.text
     date.edit(note: note)
     dismiss(animated: true)
   }

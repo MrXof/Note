@@ -17,15 +17,31 @@ final class ObjectStore {
   }
   let realm = try! Realm()
   var delegate: ObjectStoreDelegate?
-  
+  var objectNotificationToken : NotificationToken?
+
   static let shared = ObjectStore()
-  private init() {}
+  private init() {
+    
+    let results = realm.objects(Note.self)
+    objectNotificationToken = results.observe { [weak self] (changes: RealmCollectionChange) in
+      guard let self = self else { return }
+      
+      switch changes{
+      case .update(_ , _ , _ , _):
+        self.delegate?.objectStoreDidChangeValue(self)
+      case .initial(_):
+        break
+      case .error(_):
+        break
+      }
+      
+    }
+  }
   
   func add(note: Note) {
     try! realm.write {
       realm.add(note)
     }
-    delegate?.objectStoreDidChangeValue(self)
   }
   
   func removeNote(at index: Int) {
@@ -36,22 +52,11 @@ final class ObjectStore {
     }
   }
   
-  //  func edit(note: Note) {
-  //    let arrayNote = realm.objects(Note.self)
-  //    let noteUpdate = arrayNote
-  //    try! realm.write {
-  //      noteUpdate.deadlineDate = note.deadlineDate
-  //      noteUpdate.name = note.name
-  //    }
-  //    delegate?.objectStoreDidChangeValue(self)
-  //  }
-  
   func edit(block: ()->()) {
-    try! realm.write{
+    try! realm.write {
       block()
     }
   }
   
 }
-
 

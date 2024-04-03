@@ -54,11 +54,10 @@ class ModalViewController: UIViewController, UITextViewDelegate {
   }
   
   @IBAction func completionButton(_ sender: Any) {
-    //let count: Int = ObjectStore.shared.objects.count
     guard textView.text != "Нотатки" && !textView.text.isEmpty else { return }
     
       let newDate = switchDate.isOn ? dateValue : nil
-      ObjectStore.shared.add(note: Note( name: textView.text, isDone: false, deadlineDate: newDate))
+    ObjectStore.shared.add(note: Note(name: textView.text, isDone: false, deadlineDate: newDate))
       dismiss(animated: true)
   }
   

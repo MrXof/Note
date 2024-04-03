@@ -20,15 +20,16 @@ class Note: Object {
     self.name = name
     self.isDone = isDone
     self.deadlineDate = deadlineDate
-  }
-  
-  func incrementaID() -> Int {
-      let realm = try! Realm()
-      if let lastId = realm.objects(Note.self).sorted(byKeyPath: "id").first?.id {
-          return lastId + 1
-      }else{
-          return 1
-      }
+    self.id = incrementaID()
+    
+    func incrementaID() -> Int {
+        let realm = try! Realm()
+        if let lastId = realm.objects(Note.self).sorted(byKeyPath: "id", ascending: false).first?.id {
+            return lastId + 1
+        }else{
+            return 1
+        }
+    }
   }
   
 }

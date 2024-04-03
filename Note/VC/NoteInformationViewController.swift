@@ -106,7 +106,7 @@ class NoteInformationViewController: UIViewController {
     guard textView.text != "Нотатки" && !textView.text.isEmpty else { return }
     
     let deadlineDate: Date? = switchDataAndTime.isOn ? isDone : nil
-    var note = ObjectStore.shared.objects[indexRow]
+    let note = ObjectStore.shared.objects[indexRow]
     
     ObjectStore.shared.edit {
       note.deadlineDate = deadlineDate

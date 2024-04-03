@@ -67,7 +67,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     else { return }
     
     self.present(destinationController, animated: true)
-    destinationController.showNote(indexPath.row)
+    destinationController.showNote(at: indexPath.row)
   }
   
   //MARK: -- Methods Protocols

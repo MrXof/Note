@@ -10,7 +10,7 @@ import UIKit
 class NoteTableViewCell: UITableViewCell {
   
   var didRequestChangeStatus: ((NoteTableViewCell) -> Void)? //callBackFunck
-  var uiImage = "largecircle.fill.circle"
+  private let uiImage = "largecircle.fill.circle"
   
   @IBOutlet weak var timeLabel: UILabel!
   @IBOutlet weak var statusButton: UIButton!

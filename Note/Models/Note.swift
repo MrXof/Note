@@ -8,7 +8,7 @@
 import Foundation
 import RealmSwift
 
-class Note: Object {
+final class Note: Object {
   
     @Persisted (primaryKey: true) var id: Int
     @Persisted var name: String
@@ -21,15 +21,16 @@ class Note: Object {
     self.isDone = isDone
     self.deadlineDate = deadlineDate
     self.id = incrementaID()
-    
-    func incrementaID() -> Int {
-        let realm = try! Realm()
-        if let lastId = realm.objects(Note.self).sorted(byKeyPath: "id", ascending: false).first?.id {
-            return lastId + 1
-        }else{
-            return 1
-        }
-    }
+  
+  }
+  
+  func incrementaID() -> Int {
+      let realm = try! Realm()
+      if let lastId = realm.objects(Note.self).sorted(byKeyPath: "id", ascending: false).first?.id {
+          return lastId + 1
+      }else{
+          return 1
+      }
   }
   
 }

@@ -15,13 +15,12 @@ final class ObjectStore {
       realm.objects(Note.self).map({$0})
     }
   }
-  let realm = try! Realm()
+  private let realm = try! Realm()
   var delegate: ObjectStoreDelegate?
-  var objectNotificationToken : NotificationToken?
+  private var objectNotificationToken : NotificationToken?
 
   static let shared = ObjectStore()
   private init() {
-    
     let results = realm.objects(Note.self)
     objectNotificationToken = results.observe { [weak self] (changes: RealmCollectionChange) in
       guard let self = self else { return }
@@ -34,7 +33,6 @@ final class ObjectStore {
       case .error(_):
         break
       }
-      
     }
   }
   

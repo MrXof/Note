@@ -24,7 +24,7 @@ final class Note: Object {
   
   }
   
-  func incrementaID() -> Int {
+  private func incrementaID() -> Int {
       let realm = try! Realm()
       if let lastId = realm.objects(Note.self).sorted(byKeyPath: "id", ascending: false).first?.id {
           return lastId + 1

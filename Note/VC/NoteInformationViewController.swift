@@ -37,7 +37,7 @@ class NoteInformationViewController: UIViewController {
     dataPicker.overrideUserInterfaceStyle = .dark
   }
   
-  func showIndex(_ index: Int) {
+  func showNote(_ index: Int) {
     
     indexRow = index
     let note = ObjectStore.shared.objects[indexRow]

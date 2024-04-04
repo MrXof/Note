@@ -172,7 +172,8 @@
                     </view>
                     <connections>
                         <outlet property="addNoteButton" destination="KUi-Jz-290" id="I3b-Aw-rvm"/>
-                        <outlet property="tableView" destination="pg8-mt-Cb6" id="Why-Sa-U2Z"/>
+                        <outlet property="noteTextULabel" destination="mxd-h3-hs5" id="ZR7-BR-tlL"/>
+                        <outlet property="tableView" destination="pg8-mt-Cb6" id="GgO-n1-DWG"/>
                         <segue destination="Cjs-sH-1kf" kind="presentation" id="72b-Wg-fj1"/>
                         <segue destination="CDI-P2-fUi" kind="show" id="Ypo-yX-Y4C"/>
                     </connections>
@@ -181,10 +182,10 @@
             </objects>
             <point key="canvasLocation" x="-550.38167938931292" y="426.76056338028172"/>
         </scene>
-        <!--Modal View Controller-->
+        <!--Add Notes-->
         <scene sceneID="iPc-bA-wHX">
             <objects>
-                <viewController storyboardIdentifier="ModalViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Cjs-sH-1kf" customClass="ModalViewController" customModule="Note" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ModalViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Cjs-sH-1kf" customClass="AddNotes" customModule="Note" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="cpz-bi-o92">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -322,7 +323,9 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="cancelButton" destination="gNE-ly-3IH" id="47s-2P-BV7"/>
                         <outlet property="datePicker" destination="frc-fP-YoC" id="dtT-Of-OIX"/>
+                        <outlet property="detailsLabel" destination="wB4-UM-Qah" id="ViY-kb-xVT"/>
                         <outlet property="doneButton" destination="3mi-J9-DRi" id="bRf-Yi-soV"/>
                         <outlet property="switchDate" destination="LFY-7T-U0S" id="e6l-T6-Rgd"/>
                         <outlet property="textView" destination="meW-Ch-gBY" id="ige-9O-kr3"/>

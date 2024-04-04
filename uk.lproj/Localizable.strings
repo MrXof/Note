@@ -1,0 +1,25 @@
+/* 
+  Localizable.strings
+  Note
+
+  Created by Даниил Чугуевский on 04.04.2024.
+  
+*/
+
+"view_controller.lable.show_note_count" = "Нотатки";
+
+"view_controller.button.add_new_reminder" = "Нагадування";
+
+"modal_controller.button.cancel" = "Скасувати";
+
+"modal_controller.button.done" = "Готово";
+
+"modal_controller.lable.text" = "Деталі";
+
+"note_information_controller.button.show_editMode" = "Редагувати";
+
+"note_information_controller.button.done" = "Готово";
+
+"note_information_controller.button.cancel" = "Скасувати";
+
+"modal_view_controller.placeholder.text" = "Нотатки";

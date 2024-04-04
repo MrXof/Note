@@ -1,0 +1,25 @@
+/* 
+  Localizable.strings
+  Note
+
+  Created by Даниил Чугуевский on 04.04.2024.
+  
+*/
+
+"view_controller.lable.show_note_count" = "Note";
+
+"view_controller.button.add_new_reminder" = "Reminder";
+
+"modal_controller.button.cancel" = "Cancel";
+
+"modal_controller.button.done" = "Done";
+
+"modal_controller.lable.text" = "Details";
+
+"note_information_controller.button.show_editMode" = "Edit";
+
+"note_information_controller.button.done" = "Done";
+
+"note_information_controller.button.cancel" = "Cancel";
+
+"modal_view_controller.placeholder.text" = "Note";

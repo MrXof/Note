@@ -26,7 +26,6 @@ class NoteInformationViewController: UIViewController {
   var bufferString = String()
   var indexRow = 0
   var isDateEnabled: Bool = false
-  var date = ObjectStore.shared
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -38,7 +37,7 @@ class NoteInformationViewController: UIViewController {
     dataPicker.overrideUserInterfaceStyle = .dark
   }
   
-  func showCellForIndex(_ index: Int) {
+  func showNote(at index: Int) {
     
     indexRow = index
     let note = ObjectStore.shared.objects[indexRow]
@@ -107,10 +106,12 @@ class NoteInformationViewController: UIViewController {
     guard textView.text != "Нотатки" && !textView.text.isEmpty else { return }
     
     let deadlineDate: Date? = switchDataAndTime.isOn ? isDone : nil
-    var note = ObjectStore.shared.objects[indexRow]
-    note.deadlineDate = deadlineDate
-    note.name = textView.text
-    date.edit(note: note)
+    let note = ObjectStore.shared.objects[indexRow]
+    
+    ObjectStore.shared.edit {
+      note.deadlineDate = deadlineDate
+      note.name = textView.text
+    }
     dismiss(animated: true)
   }
   

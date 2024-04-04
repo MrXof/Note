@@ -44,9 +44,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     cell.display(ObjectStore.shared.objects[indexPath.row])
     cell.didRequestChangeStatus = { _ in
-      var note = ObjectStore.shared.objects[indexPath.row]
-      note.isDone = !note.isDone
-      ObjectStore.shared.edit(note: note)
+      let note = ObjectStore.shared.objects[indexPath.row]
+      ObjectStore.shared.edit(block: {
+        note.isDone = !note.isDone
+      })
       print(note)
     }
     return cell
@@ -66,7 +67,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     else { return }
     
     self.present(destinationController, animated: true)
-    destinationController.showCellForIndex(indexPath.row)
+    destinationController.showNote(at: indexPath.row)
   }
   
   //MARK: -- Methods Protocols

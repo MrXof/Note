@@ -35,6 +35,7 @@ class NoteInformationViewController: UIViewController {
     optionalViewTime.isHidden = true
     textView.isHidden = true
     dataPicker.overrideUserInterfaceStyle = .dark
+    applyLocalization()
   }
   
   func showNote(at index: Int) {
@@ -55,6 +56,12 @@ class NoteInformationViewController: UIViewController {
     }
     let checkValue = note.deadlineDate
     self.switchDataAndTime.isOn = checkValue != nil
+  }
+  
+  private func applyLocalization(){
+    showEditMode.setTitle(NSLocalizedString("note_information.edit_button.title", comment: ""), for: .normal)
+    doneButton.setTitle(NSLocalizedString("note_information.done_button.title", comment: ""), for: .normal)
+    cancelButton.setTitle(NSLocalizedString("note_information.cancel_button.title", comment: ""), for: .normal)
   }
   
   //MARK: -- Methods
@@ -103,7 +110,7 @@ class NoteInformationViewController: UIViewController {
   }
   
   @IBAction func doneSettings(_ senders: Any) {
-    guard textView.text != "Нотатки" && !textView.text.isEmpty else { return }
+    guard textView.text != NSLocalizedString("add_note.note.placeholder", comment: "") && !textView.text.isEmpty else { return }
     
     let deadlineDate: Date? = switchDataAndTime.isOn ? isDone : nil
     let note = ObjectStore.shared.objects[indexRow]

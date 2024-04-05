@@ -1,0 +1,25 @@
+/* 
+  Localizable.strings
+  Note
+
+  Created by Даниил Чугуевский on 04.04.2024.
+  
+*/
+
+"notes.lable.show_note_count" = "Нотатки";
+
+"notes.add_note_button.title" = "Нагадування";
+
+"add_note.cancel_button.title" = "Скасувати";
+
+"add_note.done_button.title" = "Готово";
+
+"add_note.label.text" = "Деталі";
+
+"note_information.edit_button.title" = "Редагувати";
+
+"note_information.done_button.title" = "Готово";
+
+"note_information.cancel_button.title" = "Скасувати";
+
+"add_note.note.placeholder" = "Нотатки";

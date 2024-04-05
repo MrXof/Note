@@ -11,6 +11,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
   
   let cellReuseIdentifier = "cell"
 
+  @IBOutlet weak var noteTextULabel: UILabel!
   @IBOutlet weak var tableView: UITableView!
   @IBOutlet weak var addNoteButton: UIButton!
   
@@ -21,13 +22,15 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     tableView.delegate = self
     tableView.dataSource = self
     ObjectStore.shared.delegate = self
+    applyLocalization()
+    acceptsCellCounter(ObjectStore.shared.objects.count)
   }
   
   //MARK: -- Actions
   
   @IBAction func addNewElement(_ sender: Any) {  // TODO: Target action pattern
     let storyboard = UIStoryboard(name: "Main", bundle: nil)
-    guard let destinationController = storyboard.instantiateViewController(withIdentifier: ModalViewController.controllerIdentifier) as? ModalViewController
+    guard let destinationController = storyboard.instantiateViewController(withIdentifier: AddNotesViewController.controllerIdentifier) as? AddNotesViewController
     else { return }
 
     self.present(destinationController, animated: true)
@@ -70,9 +73,21 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     destinationController.showNote(at: indexPath.row)
   }
   
+  private func applyLocalization(){
+    noteTextULabel.text = NSLocalizedString("notes.lable.show_note_count", comment: "")
+    addNoteButton.setTitle(NSLocalizedString("notes.add_note_button.title", comment: ""), for: .normal)
+  }
+  
+    private func acceptsCellCounter(_ count: Int) {
+    let formatString : String = NSLocalizedString("cell count", comment: "not found")
+    let resultString : String = String.localizedStringWithFormat(formatString, count)
+    noteTextULabel.text = resultString
+  }
+
   //MARK: -- Methods Protocols
   
   func objectStoreDidChangeValue(_ objectStore: ObjectStore) {
+    acceptsCellCounter(Int(objectStore.objects.count))
     tableView.reloadData()
     print(objectStore.objects)
   }

@@ -8,12 +8,14 @@
 import Foundation
 import UIKit
 
-class ModalViewController: UIViewController, UITextViewDelegate {
+class AddNotesViewController: UIViewController, UITextViewDelegate {
   
   @IBOutlet weak var datePicker: UIDatePicker!
   @IBOutlet weak var doneButton: UIButton!
   @IBOutlet weak var textView: UITextView!
   @IBOutlet weak var switchDate: UISwitch!
+  @IBOutlet weak var cancelButton: UIButton!
+  @IBOutlet weak var detailsLabel: UILabel!
   
   private var dateValue = Date()
   
@@ -24,6 +26,7 @@ class ModalViewController: UIViewController, UITextViewDelegate {
     editButton()
     setupTextView()
     datePicker.overrideUserInterfaceStyle = .dark
+    applyLocalization()
   }
   
   //MARK: -- Methods
@@ -35,7 +38,7 @@ class ModalViewController: UIViewController, UITextViewDelegate {
   
   func setupTextView() {
     textView.delegate = self
-    textView.text = "Нотатки"
+    textView.text = NSLocalizedString("add_note.note.placeholder", comment: "")
     textView.textColor = UIColor.lightGray
   }
   
@@ -48,13 +51,19 @@ class ModalViewController: UIViewController, UITextViewDelegate {
   
   func textViewDidEndEditing(_ textView: UITextView) {
     if textView.text.isEmpty {
-      textView.text = "Нотатки"
+      textView.text = NSLocalizedString("add_note.note.placeholder", comment: "")
       textView.textColor = UIColor.lightGray
     }
   }
   
+  private func applyLocalization(){
+    cancelButton.setTitle(NSLocalizedString("add_note.cancel_button.title", comment: ""), for: .normal)
+    doneButton.setTitle(NSLocalizedString("add_note.done_button.title", comment: ""), for: .normal)
+    detailsLabel.text = NSLocalizedString("add_note.label.text", comment: "")
+  }
+  
   @IBAction func completionButton(_ sender: Any) {
-    guard textView.text != "Нотатки" && !textView.text.isEmpty else { return }
+    guard textView.text != NSLocalizedString("add_note.note.placeholder", comment: "") && !textView.text.isEmpty else { return }
     
     let newDate = switchDate.isOn ? dateValue : nil
     ObjectStore.shared.add(note: Note(name: textView.text, isDone: false, deadlineDate: newDate))

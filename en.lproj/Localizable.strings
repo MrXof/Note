@@ -6,9 +6,9 @@
   
 */
 
-"show_table_view.lable.show_note_count" = "Note";
+"notes.lable.show_note_count" = "Note";
 
-"show_table_view.button.add_new_reminder" = "Reminder";
+"notes.add_note_button.title" = "Reminder";
 
 "add_note.cancel_button.title" = "Cancel";
 
@@ -16,10 +16,10 @@
 
 "add_note.label.text" = "Details";
 
-"note_information_controller.button.show_editMode" = "Edit";
+"note_information.edit_button.title" = "Edit";
 
-"note_information_controller.button.done" = "Done";
+"note_information.done_button.title" = "Done";
 
-"note_information_controller.button.cancel" = "Cancel";
+"note_information.cancel_button.title" = "Cancel";
 
-"show_placeholder.label.text" = "Note";
+"add_note.note.placeholder" = "Note";

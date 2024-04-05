@@ -38,7 +38,7 @@ class AddNotesViewController: UIViewController, UITextViewDelegate {
   
   func setupTextView() {
     textView.delegate = self
-    textView.text = NSLocalizedString("show_placeholder.label.text", comment: "")
+    textView.text = NSLocalizedString("add_note.note.placeholder", comment: "")
     textView.textColor = UIColor.lightGray
   }
   
@@ -51,7 +51,7 @@ class AddNotesViewController: UIViewController, UITextViewDelegate {
   
   func textViewDidEndEditing(_ textView: UITextView) {
     if textView.text.isEmpty {
-      textView.text = NSLocalizedString("show_placeholder.label.text", comment: "")
+      textView.text = NSLocalizedString("add_note.note.placeholder", comment: "")
       textView.textColor = UIColor.lightGray
     }
   }
@@ -63,7 +63,7 @@ class AddNotesViewController: UIViewController, UITextViewDelegate {
   }
   
   @IBAction func completionButton(_ sender: Any) {
-    guard textView.text != NSLocalizedString("show_placeholder.label.text", comment: "") && !textView.text.isEmpty else { return }
+    guard textView.text != NSLocalizedString("add_note.note.placeholder", comment: "") && !textView.text.isEmpty else { return }
     
     let newDate = switchDate.isOn ? dateValue : nil
     ObjectStore.shared.add(note: Note(name: textView.text, isDone: false, deadlineDate: newDate))

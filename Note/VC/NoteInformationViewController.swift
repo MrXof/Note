@@ -59,9 +59,9 @@ class NoteInformationViewController: UIViewController {
   }
   
   private func applyLocalization(){
-    showEditMode.setTitle(NSLocalizedString("note_information_controller.button.show_editMode", comment: ""), for: .normal)
-    doneButton.setTitle(NSLocalizedString("note_information_controller.button.done", comment: ""), for: .normal)
-    cancelButton.setTitle(NSLocalizedString("note_information_controller.button.cancel", comment: ""), for: .normal)
+    showEditMode.setTitle(NSLocalizedString("note_information.edit_button.title", comment: ""), for: .normal)
+    doneButton.setTitle(NSLocalizedString("note_information.done_button.title", comment: ""), for: .normal)
+    cancelButton.setTitle(NSLocalizedString("note_information.cancel_button.title", comment: ""), for: .normal)
   }
   
   //MARK: -- Methods
@@ -110,7 +110,7 @@ class NoteInformationViewController: UIViewController {
   }
   
   @IBAction func doneSettings(_ senders: Any) {
-    guard textView.text != NSLocalizedString("show_placeholder.label.text", comment: "") && !textView.text.isEmpty else { return }
+    guard textView.text != NSLocalizedString("add_note.note.placeholder", comment: "") && !textView.text.isEmpty else { return }
     
     let deadlineDate: Date? = switchDataAndTime.isOn ? isDone : nil
     let note = ObjectStore.shared.objects[indexRow]

@@ -6,9 +6,9 @@
   
 */
 
-"show_table_view.lable.show_note_count" = "Нотатки";
+"notes.lable.show_note_count" = "Нотатки";
 
-"show_table_view.button.add_new_reminder" = "Нагадування";
+"notes.add_note_button.title" = "Нагадування";
 
 "add_note.cancel_button.title" = "Скасувати";
 
@@ -16,10 +16,10 @@
 
 "add_note.label.text" = "Деталі";
 
-"note_information_controller.button.show_editMode" = "Редагувати";
+"note_information.edit_button.title" = "Редагувати";
 
-"note_information_controller.button.done" = "Готово";
+"note_information.done_button.title" = "Готово";
 
-"note_information_controller.button.cancel" = "Скасувати";
+"note_information.cancel_button.title" = "Скасувати";
 
-"show_placeholder.label.text" = "Нотатки";
+"add_note.note.placeholder" = "Нотатки";

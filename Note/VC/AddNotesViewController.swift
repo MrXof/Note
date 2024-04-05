@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-class AddNotes: UIViewController, UITextViewDelegate {
+class AddNotesViewController: UIViewController, UITextViewDelegate {
   
   @IBOutlet weak var datePicker: UIDatePicker!
   @IBOutlet weak var doneButton: UIButton!
@@ -26,7 +26,7 @@ class AddNotes: UIViewController, UITextViewDelegate {
     editButton()
     setupTextView()
     datePicker.overrideUserInterfaceStyle = .dark
-    localization()
+    applyLocalization()
   }
   
   //MARK: -- Methods
@@ -56,14 +56,14 @@ class AddNotes: UIViewController, UITextViewDelegate {
     }
   }
   
-  private func localization(){
-    cancelButton.setTitle(NSLocalizedString("modal_controller.button.cancel", comment: ""), for: .normal)
-    doneButton.setTitle(NSLocalizedString("modal_controller.button.done", comment: ""), for: .normal)
-    detailsLabel.text = NSLocalizedString("modal_controller.lable.text", comment: "")
+  private func applyLocalization(){
+    cancelButton.setTitle(NSLocalizedString("add_note.cancel_button.title", comment: ""), for: .normal)
+    doneButton.setTitle(NSLocalizedString("add_note.done_button.title", comment: ""), for: .normal)
+    detailsLabel.text = NSLocalizedString("add_note.label.text", comment: "")
   }
   
   @IBAction func completionButton(_ sender: Any) {
-    guard textView.text != NSLocalizedString("modal_viewController.placeholder.text", comment: "") && !textView.text.isEmpty else { return }
+    guard textView.text != NSLocalizedString("modal_view_controller.placeholder.text", comment: "") && !textView.text.isEmpty else { return }
     
     let newDate = switchDate.isOn ? dateValue : nil
     ObjectStore.shared.add(note: Note(name: textView.text, isDone: false, deadlineDate: newDate))

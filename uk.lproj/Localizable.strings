@@ -10,11 +10,11 @@
 
 "view_controller.button.add_new_reminder" = "Нагадування";
 
-"modal_controller.button.cancel" = "Скасувати";
+"add_note.cancel_button.title" = "Скасувати";
 
-"modal_controller.button.done" = "Готово";
+"add_note.done_button.title" = "Готово";
 
-"modal_controller.lable.text" = "Деталі";
+"add_note.label.text" = "Деталі";
 
 "note_information_controller.button.show_editMode" = "Редагувати";
 

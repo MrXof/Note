@@ -182,10 +182,10 @@
             </objects>
             <point key="canvasLocation" x="-550.38167938931292" y="426.76056338028172"/>
         </scene>
-        <!--Add Notes-->
+        <!--Add Notes View Controller-->
         <scene sceneID="iPc-bA-wHX">
             <objects>
-                <viewController storyboardIdentifier="ModalViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Cjs-sH-1kf" customClass="AddNotes" customModule="Note" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ModalViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Cjs-sH-1kf" customClass="AddNotesViewController" customModule="Note" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="cpz-bi-o92">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

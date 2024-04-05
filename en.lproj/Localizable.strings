@@ -10,11 +10,11 @@
 
 "view_controller.button.add_new_reminder" = "Reminder";
 
-"modal_controller.button.cancel" = "Cancel";
+"add_note.cancel_button.title" = "Cancel";
 
-"modal_controller.button.done" = "Done";
+"add_note.done_button.title" = "Done";
 
-"modal_controller.lable.text" = "Details";
+"add_note.label.text" = "Details";
 
 "note_information_controller.button.show_editMode" = "Edit";
 

@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		E44AE8D32BAD7ED7007DDE93 /* AddNotes.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44AE8D22BAD7ED7007DDE93 /* AddNotes.swift */; };
+		E44AE8D32BAD7ED7007DDE93 /* AddNotesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44AE8D22BAD7ED7007DDE93 /* AddNotesViewController.swift */; };
 		E44AE8D52BADACF8007DDE93 /* ObjectStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44AE8D42BADACF8007DDE93 /* ObjectStore.swift */; };
 		E45336472BB4365E00113522 /* NoteInformationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E45336462BB4365E00113522 /* NoteInformationViewController.swift */; };
 		E48A734A2BBE9ED8008A0BD8 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = E48A734C2BBE9ED8008A0BD8 /* Localizable.strings */; };
@@ -28,7 +28,7 @@
 		16F249891E5004DB52F5355D /* Pods-Note.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Note.release.xcconfig"; path = "Target Support Files/Pods-Note/Pods-Note.release.xcconfig"; sourceTree = "<group>"; };
 		2F00B11D71E0EDEC10C050FE /* Pods_Note.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Note.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C3C230DA534E24CF915D3DC /* Pods-Note.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Note.debug.xcconfig"; path = "Target Support Files/Pods-Note/Pods-Note.debug.xcconfig"; sourceTree = "<group>"; };
-		E44AE8D22BAD7ED7007DDE93 /* AddNotes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNotes.swift; sourceTree = "<group>"; };
+		E44AE8D22BAD7ED7007DDE93 /* AddNotesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNotesViewController.swift; sourceTree = "<group>"; };
 		E44AE8D42BADACF8007DDE93 /* ObjectStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectStore.swift; sourceTree = "<group>"; };
 		E45336462BB4365E00113522 /* NoteInformationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteInformationViewController.swift; sourceTree = "<group>"; };
 		E48A734B2BBE9ED8008A0BD8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -88,7 +88,7 @@
 		E453364B2BB44F1300113522 /* VC */ = {
 			isa = PBXGroup;
 			children = (
-				E44AE8D22BAD7ED7007DDE93 /* AddNotes.swift */,
+				E44AE8D22BAD7ED7007DDE93 /* AddNotesViewController.swift */,
 				E4A3221C2BAC648700A2503F /* ViewController.swift */,
 				E45336462BB4365E00113522 /* NoteInformationViewController.swift */,
 			);
@@ -271,7 +271,7 @@
 				E4A4DF4B2BB1803B00182B03 /* ObjectStoreDelegate.swift in Sources */,
 				E4A4DF4D2BB1B09600182B03 /* NoteTableViewCell.swift in Sources */,
 				E45336472BB4365E00113522 /* NoteInformationViewController.swift in Sources */,
-				E44AE8D32BAD7ED7007DDE93 /* AddNotes.swift in Sources */,
+				E44AE8D32BAD7ED7007DDE93 /* AddNotesViewController.swift in Sources */,
 				E4A3221D2BAC648700A2503F /* ViewController.swift in Sources */,
 				E4A322192BAC648600A2503F /* AppDelegate.swift in Sources */,
 				E44AE8D52BADACF8007DDE93 /* ObjectStore.swift in Sources */,

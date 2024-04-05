@@ -35,7 +35,7 @@ class NoteInformationViewController: UIViewController {
     optionalViewTime.isHidden = true
     textView.isHidden = true
     dataPicker.overrideUserInterfaceStyle = .dark
-    localization()
+    applyLocalization()
   }
   
   func showNote(at index: Int) {
@@ -58,7 +58,7 @@ class NoteInformationViewController: UIViewController {
     self.switchDataAndTime.isOn = checkValue != nil
   }
   
-  private func localization(){
+  private func applyLocalization(){
     showEditMode.setTitle(NSLocalizedString("note_information_controller.button.show_editMode", comment: ""), for: .normal)
     doneButton.setTitle(NSLocalizedString("note_information_controller.button.done", comment: ""), for: .normal)
     cancelButton.setTitle(NSLocalizedString("note_information_controller.button.cancel", comment: ""), for: .normal)

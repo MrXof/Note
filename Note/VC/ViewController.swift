@@ -22,15 +22,15 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     tableView.delegate = self
     tableView.dataSource = self
     ObjectStore.shared.delegate = self
-    localization()
-    cellCounter(ObjectStore.shared.objects.count)
+    applyLocalization()
+    acceptsCellCounter(ObjectStore.shared.objects.count)
   }
   
   //MARK: -- Actions
   
   @IBAction func addNewElement(_ sender: Any) {  // TODO: Target action pattern
     let storyboard = UIStoryboard(name: "Main", bundle: nil)
-    guard let destinationController = storyboard.instantiateViewController(withIdentifier: AddNotes.controllerIdentifier) as? AddNotes
+    guard let destinationController = storyboard.instantiateViewController(withIdentifier: AddNotesViewController.controllerIdentifier) as? AddNotesViewController
     else { return }
 
     self.present(destinationController, animated: true)
@@ -73,22 +73,21 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     destinationController.showNote(at: indexPath.row)
   }
   
-  private func localization(){
+  private func applyLocalization(){
     noteTextULabel.text = NSLocalizedString("view_controller.lable.show_note_count", comment: "")
     addNoteButton.setTitle(NSLocalizedString("view_controller.button.add_new_reminder", comment: ""), for: .normal)
   }
   
-  func cellCounter(_ count: Int) -> String {
+    private func acceptsCellCounter(_ count: Int) {
     let formatString : String = NSLocalizedString("cell count", comment: "not found")
     let resultString : String = String.localizedStringWithFormat(formatString, count)
     noteTextULabel.text = resultString
-    return resultString
   }
 
   //MARK: -- Methods Protocols
   
   func objectStoreDidChangeValue(_ objectStore: ObjectStore) {
-    cellCounter(Int(objectStore.objects.count))
+    acceptsCellCounter(Int(objectStore.objects.count))
     tableView.reloadData()
     print(objectStore.objects)
   }

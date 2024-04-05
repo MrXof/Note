@@ -110,7 +110,7 @@ class NoteInformationViewController: UIViewController {
   }
   
   @IBAction func doneSettings(_ senders: Any) {
-    guard textView.text != NSLocalizedString("modal_view_controller.placeholder.text", comment: "") && !textView.text.isEmpty else { return }
+    guard textView.text != NSLocalizedString("show_placeholder.label.text", comment: "") && !textView.text.isEmpty else { return }
     
     let deadlineDate: Date? = switchDataAndTime.isOn ? isDone : nil
     let note = ObjectStore.shared.objects[indexRow]

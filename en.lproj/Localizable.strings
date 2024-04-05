@@ -6,9 +6,9 @@
   
 */
 
-"view_controller.lable.show_note_count" = "Note";
+"show_table_view.lable.show_note_count" = "Note";
 
-"view_controller.button.add_new_reminder" = "Reminder";
+"show_table_view.button.add_new_reminder" = "Reminder";
 
 "add_note.cancel_button.title" = "Cancel";
 
@@ -22,4 +22,4 @@
 
 "note_information_controller.button.cancel" = "Cancel";
 
-"modal_view_controller.placeholder.text" = "Note";
+"show_placeholder.label.text" = "Note";

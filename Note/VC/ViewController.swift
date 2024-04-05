@@ -74,8 +74,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
   }
   
   private func applyLocalization(){
-    noteTextULabel.text = NSLocalizedString("view_controller.lable.show_note_count", comment: "")
-    addNoteButton.setTitle(NSLocalizedString("view_controller.button.add_new_reminder", comment: ""), for: .normal)
+    noteTextULabel.text = NSLocalizedString("show_table_view.lable.show_note_count", comment: "")
+    addNoteButton.setTitle(NSLocalizedString("show_table_view.button.add_new_reminder", comment: ""), for: .normal)
   }
   
     private func acceptsCellCounter(_ count: Int) {

@@ -6,9 +6,9 @@
   
 */
 
-"view_controller.lable.show_note_count" = "Нотатки";
+"show_table_view.lable.show_note_count" = "Нотатки";
 
-"view_controller.button.add_new_reminder" = "Нагадування";
+"show_table_view.button.add_new_reminder" = "Нагадування";
 
 "add_note.cancel_button.title" = "Скасувати";
 
@@ -22,4 +22,4 @@
 
 "note_information_controller.button.cancel" = "Скасувати";
 
-"modal_view_controller.placeholder.text" = "Нотатки";
+"show_placeholder.label.text" = "Нотатки";

@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -58,9 +59,12 @@
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QWz-wD-gzd">
                                                     <rect key="frame" x="0.0" y="0.0" width="361" height="80"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Time" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DLb-uw-Wa8">
-                                                            <rect key="frame" x="52" y="47" width="301" height="25"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DLb-uw-Wa8">
+                                                            <rect key="frame" x="52" y="51.666666666666664" width="301" height="20.333333333333336"/>
                                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" relation="lessThanOrEqual" constant="25" id="kNt-pe-ezS"/>
+                                                            </constraints>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <nil key="highlightedColor"/>
@@ -85,8 +89,11 @@
                                                                 <constraint firstAttribute="height" constant="20" id="hC5-xy-2RO"/>
                                                             </constraints>
                                                         </view>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xWB-D8-7jd">
-                                                            <rect key="frame" x="52" y="8" width="309" height="26"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xWB-D8-7jd">
+                                                            <rect key="frame" x="52" y="13.000000000000002" width="309" height="30.666666666666671"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="26" id="a2s-8G-SB6"/>
+                                                            </constraints>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
@@ -165,7 +172,8 @@
                     </view>
                     <connections>
                         <outlet property="addNoteButton" destination="KUi-Jz-290" id="I3b-Aw-rvm"/>
-                        <outlet property="tableView" destination="pg8-mt-Cb6" id="Why-Sa-U2Z"/>
+                        <outlet property="noteTextULabel" destination="mxd-h3-hs5" id="ZR7-BR-tlL"/>
+                        <outlet property="tableView" destination="pg8-mt-Cb6" id="GgO-n1-DWG"/>
                         <segue destination="Cjs-sH-1kf" kind="presentation" id="72b-Wg-fj1"/>
                         <segue destination="CDI-P2-fUi" kind="show" id="Ypo-yX-Y4C"/>
                     </connections>
@@ -174,10 +182,10 @@
             </objects>
             <point key="canvasLocation" x="-550.38167938931292" y="426.76056338028172"/>
         </scene>
-        <!--Modal View Controller-->
+        <!--Add Notes View Controller-->
         <scene sceneID="iPc-bA-wHX">
             <objects>
-                <viewController storyboardIdentifier="ModalViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Cjs-sH-1kf" customClass="ModalViewController" customModule="Note" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ModalViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Cjs-sH-1kf" customClass="AddNotesViewController" customModule="Note" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="cpz-bi-o92">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -315,7 +323,9 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="cancelButton" destination="gNE-ly-3IH" id="47s-2P-BV7"/>
                         <outlet property="datePicker" destination="frc-fP-YoC" id="dtT-Of-OIX"/>
+                        <outlet property="detailsLabel" destination="wB4-UM-Qah" id="ViY-kb-xVT"/>
                         <outlet property="doneButton" destination="3mi-J9-DRi" id="bRf-Yi-soV"/>
                         <outlet property="switchDate" destination="LFY-7T-U0S" id="e6l-T6-Rgd"/>
                         <outlet property="textView" destination="meW-Ch-gBY" id="ige-9O-kr3"/>

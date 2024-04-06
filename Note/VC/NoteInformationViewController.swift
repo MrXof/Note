@@ -7,7 +7,7 @@
 
 import UIKit
 
-class NoteInformationViewController: UIViewController{
+class NoteInformationViewController: UIViewController {
   
   @IBOutlet weak var centerLabelTextOutput: UILabel!
   @IBOutlet weak var timeInformation: UILabel!
@@ -26,7 +26,6 @@ class NoteInformationViewController: UIViewController{
   var bufferString = String()
   var indexRow = 0
   var isDateEnabled: Bool = false
-  var date = ObjectStore.shared
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -36,16 +35,18 @@ class NoteInformationViewController: UIViewController{
     optionalViewTime.isHidden = true
     textView.isHidden = true
     dataPicker.overrideUserInterfaceStyle = .dark
+    applyLocalization()
   }
   
-  func index(_ index: Int){
-    var note = ObjectStore.shared.objects
-    centerLabelTextOutput.text = note[index].name
+  func showNote(at index: Int) {
+    
     indexRow = index
+    let note = ObjectStore.shared.objects[indexRow]
+    centerLabelTextOutput.text = note.name
     let dateFormatter = DateFormatter()
     dateFormatter.dateFormat = "dd/MM/yyyy HH:mm"
     
-    if let deadlineDate = note[index].deadlineDate {
+    if let deadlineDate = note.deadlineDate {
       let timeString = dateFormatter.string(from: deadlineDate)
       timeInformation.text = timeString
       self.dataPicker.date = deadlineDate
@@ -53,14 +54,15 @@ class NoteInformationViewController: UIViewController{
       timeInformation.text = ""
       timeView.backgroundColor = .clear
     }
-    let checkValue = note[index].deadlineDate
-    if checkValue != nil{
-      self.switchDataAndTime.isOn = true
-    }else{
-      self.switchDataAndTime.isOn = false
-    }
+    let checkValue = note.deadlineDate
+    self.switchDataAndTime.isOn = checkValue != nil
   }
   
+  private func applyLocalization(){
+    showEditMode.setTitle(NSLocalizedString("note_information.edit_button.title", comment: ""), for: .normal)
+    doneButton.setTitle(NSLocalizedString("note_information.done_button.title", comment: ""), for: .normal)
+    cancelButton.setTitle(NSLocalizedString("note_information.cancel_button.title", comment: ""), for: .normal)
+  }
   
   //MARK: -- Methods
   
@@ -77,10 +79,10 @@ class NoteInformationViewController: UIViewController{
     self.optionalViewTime.isHidden = false
     self.showEditMode.isHidden = true
     
-    if switchDataAndTime.isOn{
+    if switchDataAndTime.isOn {
       self.dataPicker.isHidden = false
       self.dataPicker.alpha = 1.0
-    }else{
+    } else {
       self.dataPicker.isHidden = true
     }
     
@@ -108,34 +110,33 @@ class NoteInformationViewController: UIViewController{
   }
   
   @IBAction func doneSettings(_ senders: Any) {
-    let count: Int = ObjectStore.shared.objects.count
-    print(count)
-    if textView.text != "Нотатки" && (textView.text != nil) != textView.text.isEmpty{
-      if switchDataAndTime.isOn{
-        date.edit( note: Note(id: count, name: textView.text, isDone: defaultValueIsDone, deadlineDate: isDone))
-        dismiss(animated: true)
-      }else{
-        date.edit( note: Note(id: count, name: textView.text, isDone: defaultValueIsDone, deadlineDate: nil))
-
-        dismiss(animated: true)
-      }
+    guard textView.text != NSLocalizedString("add_note.note.placeholder", comment: "") && !textView.text.isEmpty else { return }
+    
+    let deadlineDate: Date? = switchDataAndTime.isOn ? isDone : nil
+    let note = ObjectStore.shared.objects[indexRow]
+    
+    ObjectStore.shared.edit {
+      note.deadlineDate = deadlineDate
+      note.name = textView.text
     }
+    dismiss(animated: true)
   }
   
   @IBAction func dateHasChange(_ sender: Any) {
     isDateEnabled = !isDateEnabled
     if isDateEnabled{
       isDone = self.dataPicker.date
-    }else{}
+    } else { }
   }
   
   @IBAction func showDataPicker(_ sender: Any) {
     if switchDataAndTime.isOn {
       self.dataPicker.isHidden = false
       dataPicker.alpha = 1.0
-    }else{
+    } else {
       self.dataPicker.isHidden = true
     }
   }
+  
   
 }

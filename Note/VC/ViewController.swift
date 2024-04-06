@@ -11,6 +11,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
   
   let cellReuseIdentifier = "cell"
 
+  @IBOutlet weak var noteTextULabel: UILabel!
   @IBOutlet weak var tableView: UITableView!
   @IBOutlet weak var addNoteButton: UIButton!
   
@@ -21,17 +22,17 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     tableView.delegate = self
     tableView.dataSource = self
     ObjectStore.shared.delegate = self
+    applyLocalization()
+    acceptsCellCounter(ObjectStore.shared.objects.count)
   }
   
   //MARK: -- Actions
   
   @IBAction func addNewElement(_ sender: Any) {  // TODO: Target action pattern
     let storyboard = UIStoryboard(name: "Main", bundle: nil)
-    guard let destinationController = storyboard.instantiateViewController(withIdentifier: ModalViewController.controllerIdentifier) as? ModalViewController
+    guard let destinationController = storyboard.instantiateViewController(withIdentifier: AddNotesViewController.controllerIdentifier) as? AddNotesViewController
     else { return }
-    
-    if let presentationController = destinationController.presentationController as? UISheetPresentationController{
-    }
+
     self.present(destinationController, animated: true)
   }
   
@@ -45,13 +46,19 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     let cell = tableView.dequeueReusableCell(withIdentifier: "NoteTableViewCell", for: indexPath) as! NoteTableViewCell
     
     cell.display(ObjectStore.shared.objects[indexPath.row])
-    
+    cell.didRequestChangeStatus = { _ in
+      let note = ObjectStore.shared.objects[indexPath.row]
+      ObjectStore.shared.edit(block: {
+        note.isDone = !note.isDone
+      })
+      print(note)
+    }
     return cell
   }
   
   func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
     if editingStyle == .delete {
-      ObjectStore.shared.clearTableViewCell(index: indexPath.row)
+      ObjectStore.shared.removeNote(at: indexPath.row)
       tableView.deleteRows(at: [indexPath], with: .fade)
     }
     
@@ -61,16 +68,28 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     let storyboard = UIStoryboard(name: "Main", bundle: nil)
     guard let destinationController = storyboard.instantiateViewController(withIdentifier: NoteInformationViewController.controllerIdentifier) as? NoteInformationViewController
     else { return }
-    if let presentationController = destinationController.presentationController as? UISheetPresentationController{
-    }
+    
     self.present(destinationController, animated: true)
-    destinationController.index(indexPath.row)
+    destinationController.showNote(at: indexPath.row)
   }
   
+  private func applyLocalization(){
+    noteTextULabel.text = NSLocalizedString("notes.lable.show_note_count", comment: "")
+    addNoteButton.setTitle(NSLocalizedString("notes.add_note_button.title", comment: ""), for: .normal)
+  }
+  
+    private func acceptsCellCounter(_ count: Int) {
+    let formatString : String = NSLocalizedString("cell count", comment: "not found")
+    let resultString : String = String.localizedStringWithFormat(formatString, count)
+    noteTextULabel.text = resultString
+  }
+
   //MARK: -- Methods Protocols
   
   func objectStoreDidChangeValue(_ objectStore: ObjectStore) {
+    acceptsCellCounter(Int(objectStore.objects.count))
     tableView.reloadData()
+    print(objectStore.objects)
   }
   
 }
